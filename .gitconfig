@@ -1,0 +1,13 @@
+[user]
+	name = Shepherd McIlroy
+	email = github@dux"fu.n"et
+[alias]
+	branch-name = !git for-each-ref --format=\"%(refname:short)\" `git symbolic-ref HEAD`
+	review = !git pull --rebase && git push origin HEAD:refs/for/`git branch-name`
+	tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[branch]
+	autosetuprebase = always
+[core]
+	pager = less -Fi
+[color]
+	ui = true
