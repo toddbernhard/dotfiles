@@ -22,8 +22,11 @@ set background=dark
 colorscheme desert
 
 
-    let g:Powerline_colorscheme = 'skwp'
+" Enable fancy symbols in Powerline
+set guifont=Bitstream\ Vera\ Sans\ Mono\ for\ Powerline:h14
+let g:Powerline_symbols = 'fancy'
 
 
 " Map w!! to write file with sudo, when forgot to open with sudo.
 cmap w!! w !sudo tee % >/dev/null
+
