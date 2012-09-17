@@ -1,4 +1,4 @@
-My dotfiles for Linux: Vim, Bash, Git, tmux and stuff.
+My dotfiles for Linux.
 
 ## Installation
 

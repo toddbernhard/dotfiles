@@ -24,7 +24,11 @@ colorscheme desert
 
 " Enable fancy symbols in Powerline
 set guifont=Bitstream\ Vera\ Sans\ Mono\ for\ Powerline:h14
+set gfn=Bitstream\ Vera\ Sans\ Mono\ for\ Powerline\ 11
 let g:Powerline_symbols = 'fancy'
+
+" Auto-clean Fugitive buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 
 " Map w!! to write file with sudo, when forgot to open with sudo.
