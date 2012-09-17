@@ -59,7 +59,7 @@ function _prompt_command() {
 PROMPT_COMMAND=_prompt_command
 
 
-if which tmux 2>&1 >/dev/null; then
+if [[ $- = *i* ]] && which tmux 2>&1 >/dev/null; then
     alias tmux="tmux -2"
     #if not inside a tmux session, and if no session is started, start a new session
     test -z "$TMUX" && (tmux -2 attach || tmux -2 new-session)
