@@ -1,0 +1,2 @@
+inoremap <C-c> <ESC>
+vnoremap <C-c> <ESC>
