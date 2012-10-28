@@ -61,6 +61,9 @@ PROMPT_COMMAND=_prompt_command
 
 if [[ $- = *i* ]] && which tmux 2>&1 >/dev/null; then
     alias tmux="tmux -2"
-    #if not inside a tmux session, and if no session is started, start a new session
-    test -z "$TMUX" && (tmux -2 attach || tmux -2 new-session)
+    # if not inside a tmux session
+    if [[ -z "$TMUX" ]]; then
+        # create a session linked to session 0 if it exists, otherwise create session 0
+        tmux -2 new-session -t 0 \; set-option destroy-unattached || tmux -2 new-session
+    fi
 fi
