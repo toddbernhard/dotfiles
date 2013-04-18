@@ -11,3 +11,5 @@
 	pager = less -Fi
 [color]
 	ui = true
+[push]
+	default = simple
