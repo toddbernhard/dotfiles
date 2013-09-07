@@ -8,11 +8,13 @@ fi
 # User specific aliases and functions
 
 export EDITOR=vim
-export PAGER="less -Fi"
+export PAGER="less -Fi" # One-page -> close less; ignore case
 
 alias less='less -Fi'
 
 set bell-style visual
+
+# append, instead of overwrite, history
 shopt -s histappend
 
 function _git_prompt() {
@@ -58,12 +60,3 @@ function _prompt_command() {
 }
 PROMPT_COMMAND=_prompt_command
 
-
-if [[ $- = *i* ]] && which tmux 2>&1 >/dev/null; then
-    alias tmux="tmux -2"
-    # if not inside a tmux session
-    if [[ -z "$TMUX" ]]; then
-        # create a session linked to session 0 if it exists, otherwise create session 0
-        tmux -2 new-session -t 0 \; set-option destroy-unattached || tmux -2 new-session
-    fi
-fi
