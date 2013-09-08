@@ -186,7 +186,7 @@ function _git_branch() {
     #    echo -n '${PROMPT_START}0;35m\]'"$branch"'\[\e[0m\]'
     #fi
 
-    echo -n "${PROMPT_START}$color$branch${PROMPT_STOP}"
+    echo -n "${is_dirty}${PROMPT_START}$color$branch${PROMPT_STOP}"
   fi
 }
 
