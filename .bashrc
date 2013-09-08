@@ -210,13 +210,14 @@ _my_prompt() {
     USER_COLOR=$PROMPT_USER_COLOR
   fi
 
-  short_path=$(_abbrev_pwd)
+  path=$(_abbrev_pwd)
+
   echo ""
   echo -n "${PROMPT_START}${USER_COLOR}\u${PROMPT_STOP}"  # user
   echo -n " ${PROMPT_START}${PROMPT_GRAY}at${PROMPT_STOP}"  # at
   echo -n " ${PROMPT_START}${PROMPT_HOST_COLOR}\h${PROMPT_STOP}" # host
   echo -n " ${PROMPT_START}${PROMPT_GRAY}in${PROMPT_STOP}"  # in
-  echo -n " ${PROMPT_START}${PROMPT_DIR_COLOR}$short_path${PROMPT_STOP}" # working dir
+  echo -n " ${PROMPT_START}${PROMPT_DIR_COLOR}${path}${PROMPT_STOP}" # working dir
 
   # if pwd is git repo, show it
   branch=$(_git_branch)
