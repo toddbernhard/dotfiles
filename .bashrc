@@ -153,11 +153,11 @@ function _git_branch() {
   local git_status="`git status -unormal 2>&1`"
   if ! [[ "$git_status" =~ Not\ a\ git\ repo ]]; then
     if [[ "$git_status" =~ nothing\ to\ commit ]]; then
-      is_dirty=true
-    # elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-    #     local color=136
-    else
       is_dirty=false
+    elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
+      is_dirty=false
+    else
+      is_dirty=true
     fi
 
     if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
@@ -169,7 +169,7 @@ function _git_branch() {
     fi
         
     if [[ "$branch" == "master" ]]; then
-      if [[ $is_dirty -eq 0 ]]; theN
+      if [[ $is_dirty -eq 0 ]]; then
         color="1;37m"
       else
         color=$PROMPT_BRANCH_MASTER_COLOR
