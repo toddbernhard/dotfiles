@@ -136,12 +136,12 @@ PROMPT_COMMAND=_abbrev_pwd
 
 PROMPT_START="\[\e["
 PROMPT_STOP="\e[m\]"
-PROMPT_NORMAL="0;38;05;243m"
-PROMPT_USER_COLOR="0;38;05;208m"
+PROMPT_GRAY="0;38;05;244m"
+PROMPT_USER_COLOR="0;38;05;172m"
 PROMPT_USER_ROOT_COLOR="1;31m"
-PROMPT_HOST_COLOR="0;38;05;184m"
-PROMPT_DIR_COLOR="0;38;05;76m"
-PROMPT_BRANCH_COLOR="35m"
+PROMPT_HOST_COLOR="0;38;05;185m"
+PROMPT_DIR_COLOR="0;38;05;70m"
+PROMPT_BRANCH_COLOR="0;38;05;24m"
 PROMPT_BRANCH_MASTER_COLOR="m"
 PROMPT_BRANCH_DIRTY_MASTER_COLOR="1;37;41m"
 PROMPT_TOKEN_COLOR="0;34m"
@@ -175,7 +175,11 @@ function _git_branch() {
         color=$PROMPT_BRANCH_MASTER_COLOR
       fi
     else
-      color=$PROMPT_BRANCH_COLOR
+		if $is_dirty ; then
+        color="1;"$PROMPT_BRANCH_COLOR
+      else
+        color="0;"$PROMPT_BRANCH_COLOR
+      fi
     fi
 
     if $is_dirty ; then
@@ -221,15 +225,16 @@ _my_prompt() {
   short_path=$(_abbrev_pwd)
   echo ""
   echo -n "${PROMPT_START}${USER_COLOR}\u${PROMPT_STOP}"  # user
-  echo -n " ${PROMPT_START}${PROMPT_NORMAL}at${PROMPT_STOP}"  # at
+  echo -n " ${PROMPT_START}${PROMPT_GRAY}at${PROMPT_STOP}"  # at
   echo -n " ${PROMPT_START}${PROMPT_HOST_COLOR}\h${PROMPT_STOP}" # host
-  echo -n " ${PROMPT_START}${PROMPT_NORMAL}in${PROMPT_STOP}"  # in
+  echo -n " ${PROMPT_START}${PROMPT_GRAY}in${PROMPT_STOP}"  # in
   echo -n " ${PROMPT_START}${PROMPT_DIR_COLOR}$short_path${PROMPT_STOP}" # working dir
 
   # if pwd is git repo, show it
   branch=$(_git_branch)
   if [ ! -z $branch ]; then # if branch is not empty
-    echo -n " on $branch"
+    echo -n " ${PROMPT_START}${PROMPT_GRAY}on${PROMPT_STOP}"   # on
+    echo -n " $branch"
   fi
 
   echo ""
