@@ -137,13 +137,13 @@ PROMPT_COMMAND=_abbrev_pwd
 PROMPT_START="\[\e["
 PROMPT_STOP="\e[m\]"
 PROMPT_NORMAL="1;30m"
-PROMPT_USER_COLOR="0;33m"
+PROMPT_USER_COLOR="0;38;05;208m"
 PROMPT_USER_ROOT_COLOR="1;31m"
-PROMPT_HOST_COLOR="0;34m"
-PROMPT_DIR_COLOR="0;32m"
-PROMPT_BRANCH_COLOR=""
+PROMPT_HOST_COLOR="0;38;05;184m"
+PROMPT_DIR_COLOR="0;38;05;76m"
+PROMPT_BRANCH_COLOR="35m"
 PROMPT_BRANCH_MASTER_COLOR="m"
-PROMPT_BRANCH_DIRTY_MASTER_COLOR="1;37m;41m"
+PROMPT_BRANCH_DIRTY_MASTER_COLOR="1;37;41m"
 PROMPT_TOKEN_COLOR="0;34m"
 PROMPT_TOKEN_ERROR_COLOR="1;31m"
 PROMPT_TOKEN_ROOT_COLOR="1;33m"
@@ -170,12 +170,12 @@ function _git_branch() {
         
     if [[ "$branch" == "master" ]]; then
       if $is_dirty ; then
-        color="1;37m"
+        color=$PROMPT_BRANCH_DIRTY_MASTER_COLOR
       else
         color=$PROMPT_BRANCH_MASTER_COLOR
       fi
     else
-      color="35m"
+      color=$PROMPT_BRANCH_COLOR
     fi
 
     if $is_dirty ; then
