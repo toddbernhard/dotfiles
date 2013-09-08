@@ -159,6 +159,7 @@ function _git_branch() {
     if [[ "$branch" == "master" ]]; then
       if $is_dirty ; then
         color=$PROMPT_BRANCH_DIRTY_MASTER_COLOR
+         #color="7;38;05;9m"
       else
         color=$PROMPT_BRANCH_MASTER_COLOR
       fi
@@ -175,10 +176,11 @@ function _git_branch() {
     fi
 
     #if [[ "$branch" != ' ' || "$color" != "29" ]]; then
-    #    echo -n '${PROMPT_START}0;35m\]'"$branch"'\[\e[0m\]'
+    #    echo -n '${PROMPT_START}0;35m\]'" $branch "'\[\e[0m\]'
     #fi
 
-    echo -n "${PROMPT_START}$color$branch${PROMPT_STOP}"
+    #printf "%b %s %b" "${PROMPT_START}${color}" "${branch}" "${PROMPT_STOP}"
+    echo -n "${PROMPT_START}${color}$branch${PROMPT_STOP}"
   fi
 }
 
