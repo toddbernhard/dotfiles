@@ -228,6 +228,8 @@ _my_prompt() {
     echo -n " $branch"
   fi
 
+  echo -n " ${PROMPT_START}${PROMPT_GRAY}at \A${PROMPT_STOP}"
+
   echo ""
 }
 
