@@ -134,19 +134,7 @@ PROMPT_COMMAND=_abbrev_pwd
 # change prompt to only the working dir path
 #PROMPT_COMMAND='DIR=`pwd|sed -e "s!$HOME!~!"`; if [ ${#DIR} -gt 30 ]; then CurDir=${DIR:0:12}...${DIR:${#DIR}-15}; else CurDir=$DIR; fi'
 
-PROMPT_START="\[\e["
-PROMPT_STOP="\e[m\]"
-PROMPT_GRAY="0;38;05;244m"
-PROMPT_USER_COLOR="0;38;05;172m"
-PROMPT_USER_ROOT_COLOR="1;31m"
-PROMPT_HOST_COLOR="0;38;05;185m"
-PROMPT_DIR_COLOR="0;38;05;70m"
-PROMPT_BRANCH_COLOR="38;05;24m"
-PROMPT_BRANCH_MASTER_COLOR="m"
-PROMPT_BRANCH_DIRTY_MASTER_COLOR="1;37;41m"
-PROMPT_TOKEN_COLOR="0;34m"
-PROMPT_TOKEN_ERROR_COLOR="1;31m"
-PROMPT_TOKEN_ROOT_COLOR="1;33m"
+. .bash_prompt_blue_shift
 
 
 function _git_branch() {
