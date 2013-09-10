@@ -212,12 +212,20 @@ _my_prompt() {
     USER_COLOR=$PROMPT_USER_COLOR
   fi
 
+
   path=$(_abbrev_pwd)
 
   echo ""
   echo -n "${PROMPT_START}${USER_COLOR}\u${PROMPT_STOP}"  # user
   echo -n " ${PROMPT_START}${PROMPT_GRAY}at${PROMPT_STOP}"  # at
-  echo -n " ${PROMPT_START}${PROMPT_HOST_COLOR}\h${PROMPT_STOP}" # host
+
+  env | grep -q "SSH_CLIENT"
+  if [ $? -ne "0" ]; then
+    echo -n " \h"
+  else
+    echo -n " ${PROMPT_START}${PROMPT_HOST_COLOR}\h${PROMPT_STOP}" # host
+  fi
+
   echo -n " ${PROMPT_START}${PROMPT_GRAY}in${PROMPT_STOP}"  # in
   echo -n " ${PROMPT_START}${PROMPT_DIR_COLOR}${path}${PROMPT_STOP}" # working dir
 
