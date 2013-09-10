@@ -1,6 +1,6 @@
 [user]
-	name = Shepherd McIlroy
-	email = github@dux"fu.n"et
+	name = Todd Bernhard
+	email = bernhard.todd@gm"ail.c"om
 [alias]
 	branch-name = !git for-each-ref --format=\"%(refname:short)\" `git symbolic-ref HEAD`
 	review = !git pull --rebase && git push origin HEAD:refs/for/`git branch-name`
