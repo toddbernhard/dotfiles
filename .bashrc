@@ -143,7 +143,7 @@ function _git_branch() {
     if [[ "$git_status" =~ nothing\ to\ commit ]]; then
       is_dirty=false
     elif [[ "$git_status" =~ nothing\ added\ to\ commit\ but\ untracked\ files\ present ]]; then
-      is_dirty=false
+      is_dirty=true
     else
       is_dirty=true
     fi
