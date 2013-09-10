@@ -1,9 +1,13 @@
 #!/bin/bash
 
-cp .bash_prompt_blue_shift ~/.bash_default
-cat .bashrc >> ~/.bash_default
-echo "Copied .bashrc to ~/.bash_default"
+cp .bash_prompt_blue_shift ~/.bash_portable
+cat .bashrc >> ~/.bash_portable
+echo "Copied .bashrc to ~/.bash_portable"
 
-echo ". .bash_default" >> ~/.bashrc
-
+SOURCE_STRING="source ~/.bash_portable"
+cat ~/.bashrc | grep -q "$SOURCE_STRING"
+if [ $? -ne "0" ]; then
+  echo "$SOURCE_STRING" >> ~/.bashrc
+  echo "Added '$SOURCE_STRING' to .bashrc"
+fi
 
