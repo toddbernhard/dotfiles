@@ -4,10 +4,12 @@
 
 set -e  # fail fast
 
+THEME=arch_blue_orange.theme
+
 
 # Setup BASH
 
-cp blue_orange.theme ~/.bash_portable
+cp $THEME ~/.bash_portable
 cat bashrc >> ~/.bash_portable
 echo "Copied bashrc to ~/.bash_portable"
 
@@ -34,3 +36,5 @@ if [ -x ~/.vimrc ]; then
 else
    cp vimrc ~/.vimrc
 fi
+
+. ~/.bashrc

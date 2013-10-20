@@ -154,15 +154,8 @@ function _git_branch() {
     if [[ "$branch" == "master" ]]; then
       if $is_dirty ; then
         color=$PROMPT_BRANCH_DIRTY_MASTER_COLOR
-         #color="7;38;05;9m"
       else
         color=$PROMPT_BRANCH_MASTER_COLOR
-      fi
-    else
-		if $is_dirty ; then
-        color="1;"$PROMPT_BRANCH_COLOR
-      else
-        color="0;"$PROMPT_BRANCH_COLOR
       fi
     fi
 
