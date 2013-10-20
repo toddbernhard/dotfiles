@@ -11,7 +11,7 @@ cp blue_orange.theme ~/.bash_portable
 cat bashrc >> ~/.bash_portable
 echo "Copied bashrc to ~/.bash_portable"
 
-SOURCE_STRING="/bin/bash ~/.bash_portable"
+SOURCE_STRING="source ~/.bash_portable"
 if [ -x ~/.bashrc ]; then
     cat ~/.bashrc | grep -q "$SOURCE_STRING"
     if [ $? -ne "0" ]; then

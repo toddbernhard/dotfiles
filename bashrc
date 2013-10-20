@@ -131,8 +131,6 @@ PROMPT_COMMAND=_abbrev_pwd
 # change prompt to only the working dir path
 #PROMPT_COMMAND='DIR=`pwd|sed -e "s!$HOME!~!"`; if [ ${#DIR} -gt 30 ]; then CurDir=${DIR:0:12}...${DIR:${#DIR}-15}; else CurDir=$DIR; fi'
 
-. .bash_prompt_blue_shift
-
 
 function _git_branch() {
   local git_status="`git status -unormal 2>&1`"
