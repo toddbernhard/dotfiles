@@ -1,15 +1,17 @@
 #!/bin/bash
 
-# Setup this script
-
-set -e  # fail fast
-
+# Config
 THEME=arch_blue_orange.theme
+
+
+# Setup this script
+set -e  # fail fast
 
 
 # Setup BASH
 
 cp $THEME ~/.bash_portable
+cat bash_aliases >> ~/.bash_portable
 cat bashrc >> ~/.bash_portable
 echo "Copied bashrc to ~/.bash_portable"
 
@@ -24,17 +26,10 @@ else
     echo "$SOURCE_STRING" > ~/.bashrc
     echo "Created ~/.bashrc"
 fi
+source ~/.bashrc
 
 
 # Setup VIM
+cp vimrc ~/.vimrc
+echo "Created ~/.vimrc"
 
-if [ -x ~/.vimrc ]; then
-   cp vimrc tmp
-   cat ~/.vimrc >> tmp
-   cp tmp ~/.vimrc
-   rm tmp
-else
-   cp vimrc ~/.vimrc
-fi
-
-. ~/.bashrc
