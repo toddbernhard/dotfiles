@@ -39,6 +39,15 @@ alias chgrp='chgrp --preserve-root'
 alias cd..='cd ..'
 #
 
+## Package management ##
+alias pac="/usr/bin/pacman -S"      # default action
+alias pacu="/usr/bin/pacman -Syu"   # [u]pdate
+alias pacr="/usr/bin/pacman -Rs"    # [r]emove
+alias pacs="/usr/bin/pacman -Ss"    # [s]earch
+alias paci="/usr/bin/pacman -Si"    # [i]nfo
+alias paclo="/usr/bin/pacman -Qdt"  # [l]ist [o]rphans
+#
+
 alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
