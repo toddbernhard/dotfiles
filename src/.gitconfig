@@ -1,15 +1,16 @@
 [user]
 	name = Todd Bernhard
 	email = bernhard.todd@gm"ail.c"om
+[core]
+  excludesfile = ~/.gitignore_global
+	pager = less -Fi
+[color]
+	ui = true
 [alias]
 	branch-name = !git for-each-ref --format=\"%(refname:short)\" `git symbolic-ref HEAD`
 	review = !git pull --rebase && git push origin HEAD:refs/for/`git branch-name`
 	tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [branch]
 	autosetuprebase = always
-[core]
-	pager = less -Fi
-[color]
-	ui = true
 [push]
 	default = simple
