@@ -63,7 +63,7 @@ mv buffer $_BASH_PORTABLE
 echo "Copied theme, .bash_aliases, .bashrc to $_BASH_PORTABLE"
 
 SOURCE_STRING="source $_BASH_PORTABLE"
-if [ -x "$_BASHRC" ]; then
+if [ -f "$_BASHRC" ]; then
     cat "$_BASHRC" | grep -q "$SOURCE_STRING"
     if [[ $? -ne "0" ]]; then
         echo "$SOURCE_STRING" >> "$_BASHRC"
@@ -73,7 +73,6 @@ else
     echo "$SOURCE_STRING" > "$_BASHRC"
     echo "Created $_BASHRC"
 fi
-source "$_BASHRC"
 
 src/gen_bash_profile.sh "$GLOBAL_FLAG" > buffer
 ./overwrite_check.sh buffer "$_BASH_PROFILE"
