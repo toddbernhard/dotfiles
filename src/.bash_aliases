@@ -39,6 +39,11 @@ alias chgrp='chgrp --preserve-root'
 alias cd..='cd ..'
 #
 
+## Toggle Dvorak ##
+alias asdf="setxkbmap dvorak"
+alias aoeu="setxkbmap qwerty"
+#
+           
 ## Package management ##
 alias pac="/usr/bin/pacman -S"      # default action
 alias pacu="/usr/bin/pacman -Syu"   # [u]pdate
