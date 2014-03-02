@@ -87,32 +87,27 @@ function _git_branch() {
       is_dirty=true
     fi
 
-    if [[ "$git_status" =~ On\ branch\ ([^[:space:]]+) ]]; then
-      branch=${BASH_REMATCH[1]}
-    else
-      # Detached HEAD.  (branch=HEAD is a faster alternative.)
-      branch="(`git describe --all --contains --abbrev=4 HEAD 2> /dev/null ||
-        echo HEAD`)"
-    fi
-        
-    if [[ "$branch" == "master" ]]; then
-      if $is_dirty ; then
-        color=$PROMPT_BRANCH_DIRTY_MASTER_COLOR
+    branch="$(git symbolic-ref HEAD 2>/dev/null)" ||
+      branch="(detached HEAD)"
+    branch=${branch##refs/heads/}
+    
+    if [[ $is_dirty ]]; then
+      if [[ "$branch" == "master" ]]; then
+        flag_color="$PROMPT_BRANCH_DIRTY_MASTER_COLOR"
       else
-        color=$PROMPT_BRANCH_MASTER_COLOR
+        flag_color="$PROMPT_BRANCH_DIRTY_COLOR"
       fi
     fi
 
+    color="$PROMPT_BRANCH_COLOR"
+    string="${PROMPT_START}${color}${branch}${PROMPT_STOP}"
+
     if $is_dirty ; then
-      branch=$branch"*"
+      flag="${PROMPT_START}${flag_color}.!${PROMPT_STOP}"
+      string="${string}${flag}"
     fi
 
-    #if [[ "$branch" != ' ' || "$color" != "29" ]]; then
-    #    echo -n '${PROMPT_START}0;35m\]'" $branch "'\[\e[0m\]'
-    #fi
-
-    #printf "%b %s %b" "${PROMPT_START}${color}" "${branch}" "${PROMPT_STOP}"
-    echo -n "${PROMPT_START}${color}$branch${PROMPT_STOP}"
+    echo -n $string
   fi
 }
 
@@ -120,9 +115,9 @@ function _prompt_token() {
     # if root, use yellow #. else use green $
     if [[ $UID -eq "0" ]]; then
       token="#"
-      user_color=$PROMPT_TOKEN_ROOT_COLOR
+      user_color="$PROMPT_TOKEN_ROOT_COLOR"
     else
-      user_color=$PROMPT_TOKEN_COLOR
+      user_color="$PROMPT_TOKEN_COLOR"
       token="$"
     fi
     
@@ -139,9 +134,9 @@ function _prompt_token() {
 _my_prompt() {
   
   if [[ $UID -eq "0" ]]; then
-    USER_COLOR=$PROMPT_USER_ROOT_COLOR
+    USER_COLOR="$PROMPT_USER_ROOT_COLOR"
   else
-    USER_COLOR=$PROMPT_USER_COLOR
+    USER_COLOR="$PROMPT_USER_COLOR"
   fi
 
 
@@ -168,7 +163,7 @@ _my_prompt() {
     echo -n " $branch"
   fi
 
-  echo -n " ${PROMPT_START}${PROMPT_GRAY}at \A${PROMPT_STOP}"
+  #echo -n " ${PROMPT_START}${PROMPT_GRAY}at \A${PROMPT_STOP}"
 
   echo ""
 }
