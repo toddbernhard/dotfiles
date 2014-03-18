@@ -52,9 +52,6 @@ fi
 ##  INSTALL  ##
 ###############
 
-set -e  # fail fast
-
-
 # BASH
 cp "$THEME" buffer
 cat src/.bash_aliases >> buffer
@@ -65,6 +62,7 @@ echo "Copied theme, .bash_aliases, .bashrc to $_BASH_PORTABLE"
 SOURCE_STRING="source $_BASH_PORTABLE"
 if [ -f "$_BASHRC" ]; then
     cat "$_BASHRC" | grep -q "$SOURCE_STRING"
+    echo "got here"
     if [[ $? -ne "0" ]]; then
         echo "$SOURCE_STRING" >> "$_BASHRC"
         echo "Added '$SOURCE_STRING' to $_BASHRC"

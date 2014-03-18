@@ -18,6 +18,7 @@ fi
 
 if [[ ! -a "$DEST" ]]; then
     cp "$SRC" "$DEST"
+    echo "copied $SRC to $DEST."
     exit 0
 
 
