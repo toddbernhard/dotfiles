@@ -54,6 +54,40 @@ fi
 
 # BASH
 cp "$THEME" buffer
+
+options=("pacman" "yum")
+PS3="Which package manager aliases? "
+select opt in "${options[@]}" "none of the above"; do 
+
+    case "$REPLY" in
+
+    1 ) cat << EOF >> buffer
+alias pac="/usr/bin/pacman -S"      # default action
+alias pacu="/usr/bin/pacman -Syu"   # [u]pdate
+alias pacr="/usr/bin/pacman -Rs"    # [r]emove
+alias pacs="/usr/bin/pacman -Ss"    # [s]earch
+alias paci="/usr/bin/pacman -Si"    # [i]nfo
+alias pacl="/usr/bin/pacman -Qt"    # [l]ist unrequired
+alias paclo="/usr/bin/pacman -Qdt"  # [l]ist [o]rphans
+EOF
+    ;;
+    
+    2 ) cat << EOF >> buffer
+alias yum="/usr/bin/yum install"      # default action
+alias yumu="/usr/bin/yum update"   # [u]pdate
+alias yumr="/usr/bin/yum remove"    # [r]emove
+alias yums="/usr/bin/yum search"    # [s]earch
+alias yumi="/usr/bin/yum info"    # [i]nfo
+alias pacl="/usr/bin/yum list installed"    # [l]ist
+EOF
+    ;;
+
+    * ) echo "None";;
+
+    esac
+    break
+done
+
 cat src/.bash_aliases >> buffer
 cat src/.bash_portable >> buffer
 mv buffer $_BASH_PORTABLE

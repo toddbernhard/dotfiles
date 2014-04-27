@@ -44,14 +44,6 @@ alias asdf="setxkbmap dvorak"
 alias aoeu="setxkbmap qwerty"
 #
            
-## Package management ##
-#alias pac="/usr/bin/pacman -S"      # default action
-#alias pacu="/usr/bin/pacman -Syu"   # [u]pdate
-#alias pacr="/usr/bin/pacman -Rs"    # [r]emove
-#alias pacs="/usr/bin/pacman -Ss"    # [s]earch
-#alias paci="/usr/bin/pacman -Si"    # [i]nfo
-#alias pacl="/usr/bin/pacman -Qt"    # [l]ist unrequired
-#alias paclo="/usr/bin/pacman -Qdt"  # [l]ist [o]rphans
 #
 
 alias ll='ls -alFh'
