@@ -53,15 +53,16 @@ exit_code() {
   echo -n "%(?..%F{red}%?%f )"
 }
 
-# fastest possible way to check if repo is dirty
 git_dirty() {
-	# check if we're in a git repo
-	command git rev-parse --is-inside-work-tree &>/dev/null || return
-	# check if it's dirty
-	[[ "$PURE_GIT_UNTRACKED_DIRTY" == 0 ]] && local umode="-uno" || local umode="-unormal"
-	command test -n "$(git status --porcelain --ignore-submodules ${umode})"
+  dirty_count=$(git status --porcelain 2>/dev/null | wc -l)
 
-	(($? == 0)) && echo '%F{magenta}.%f '
+  echo -n "%F{magenta}"
+	if [ "$dirty_count" -gt 5 ]; then
+    echo -n "$dirty_count "
+  elif [ "$dirty_count" -gt 0 ]; then
+    echo -n ". "
+  fi
+  echo -n "%f"
 }
 
 
