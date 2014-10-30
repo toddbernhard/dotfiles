@@ -64,98 +64,60 @@ git_dirty() {
 	(($? == 0)) && echo '%F{magenta}.%f '
 }
 
+
+# checking if we need to push/pull, or "upstream", is done in the background.
+# these two files help the concurrency stuff
+touch_lock_path=".zsh-checking-upstream"
+diff_path=".zsh-upstream-diff"
+
+# fetches and updates 'upstream-diff' with "downup", "down", "up"
 git_check_upstream() {
   # check if we're in a git repo
-  git_path=$(git rev-parse --is-inside-work-tree 2> /dev/null)
+  git_path=$(git rev-parse --git-dir 2> /dev/null)
   if [ $? = 0 ]; then
-    echo "in git"
-  fi
-  
-  # prevents parallel runs
-  # touch "~/.zsh/checking-upstream"
-
-  # check if there is anything to pull
-	command git fetch &>/dev/null &&
-  # check if there is an upstream configured for this branch
-	command git rev-parse --abbrev-ref @'{u}' &>/dev/null && {
-    local =$(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0
-		local downstream=$(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) > 0
-    echo -n "%F{cyan}"
-    if (( $upstream && $downstream )); then
-      echo -n "⇅ "
-    fi
-    #  elif [ $upstream ]; then
-    #    echo -n "↓ "
-    #  elif [ $downstream ]; then
-    #    echo -n "↑ "
-    #  fi
-    #  echo -n "%f"
-		#}
-
-}
-}
-
-async-rprompt() {
-  sleep 2 && RPROMPT=$(date)
-  
-  # Save the prompt in a temp file so the parent shell can read it.
-  printf "%s" $RPROMPT > ~/.zsh_rprompt
-  # Signal the parent shell to update the prompt.
-  kill -12
-}
-# Build the prompt in a background job.
-#async-rprompt &!
-
-# communicate with upstream-checking daemon
-git_push_pull() {
-	(( ${GIT_UPSTREAM:-1} )) && {
-
-  	# check if we're in a git repo
-	  command git rev-parse --is-inside-work-tree &>/dev/null
-    if [ $? -eq 0 ]; then
-      # set for daemon
-      export ZSH_PROMPT_GIT_DIR=$(pwd)
+    git_path=${git_path%.git}
     
-      # check if upstream fetch is still useful
-      if [ "$ZSH_PROMPT_GIT_FETCHED_DIR" = "$(pwd)" ]; then
-        echo -n "%F{cyan}"
-        case ${ZSH_PROMPT_GIT_FETCHED:?"not set"} in
-          updown) echo -n "⇅" ;;
-          down) echo -n "↓";;
-          up) echo -n "↑" ;;
-          *) echo -n " " ;;
-        esac
-        echo -n " %f"
-      fi
+    # prevents parallel runs      
+    touch_lock="$git_path$touch_lock_path"
+    if [ ! -e $touch_lock ]; then
+       touch "$touch_lock"
+       # check if there is anything to pull
+       command git fetch &>/dev/null &&
+       # check if there is an upstream configured for this branch
+	     command git rev-parse --abbrev-ref @'{u}' &>/dev/null && {
+         local diff=''
+         (( $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && diff+='down'
+         (( $(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && diff+='up'
+         echo "$diff" > "$git_path$diff_path"
+      }
 
-    else # not in git repo
-      unset ZSH_PROMPT_GIT_DIR
+      rm "$touch_lock"
     fi
-
-		# check check if there is anything to pull
-		#command git fetch &>/dev/null &&
-		# check if there is an upstream configured for this branch
-		#command git rev-parse --abbrev-ref @'{u}' &>/dev/null && {
-    #  local upstream=$(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0
-		#	local downstream=$(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) > 0
-    #  echo -n "%F{cyan}"
-    #  if (( $upstream && $downstream )); then
-    #    echo -n "⇅ "
-    #  elif [ $upstream ]; then
-    #    echo -n "↓ "
-    #  elif [ $downstream ]; then
-    #    echo -n "↑ "
-    #  fi
-    #  echo -n "%f"
-		#}
-	} &!
+  fi
 }
 
-right_prompt() {
-  echo "$(git_dirty)$vcs_info_msg_0_"
-}
+# reads 'upstream-diff' and prints arrows
+git_print_upstream() {
+  # check if we're in a git repo
+  git_path=$(git rev-parse --git-dir 2> /dev/null)
+  if [  $? = 0 ]; then
+    git_path=${git_path%.git}
 
-#$(git_push_pull)
+    diff="$git_path$diff_path"
+    if [ -r "$diff" ]; then
+
+      echo -n "%F{yellow}"
+      case $(cat $diff) in
+        updown | downup) echo -n "⇅ " ;;
+        down) echo -n "↓ ";;
+        up) echo -n "↑ " ;;
+        *) ;;
+      esac
+      echo -n "%f"
+
+    fi
+  fi
+}
 
 prompt_pure_setup() {
 	# prevent percentage showing up
@@ -164,7 +126,6 @@ prompt_pure_setup() {
 
 	#prompt_opts=(cr subst percent)
 
-	zmodload zsh/datetime
 	autoload -Uz add-zsh-hook
 	autoload -Uz vcs_info
 
@@ -180,7 +141,11 @@ prompt_pure_setup() {
 }
 
 left_prompt() {
-  echo -n "\n▏$(host) $(abbrev_pwd) $(exit_code)⤜ "  # ᚛'$(left_prompt)'
+  echo -n "\n▏$(host) $(abbrev_pwd) $(exit_code)⤜ "  # ᚛"
+}
+
+right_prompt() {
+  echo -n "$(git_dirty)$(git_print_upstream)$vcs_info_msg_0_"
 }
 
 prompt_pure_precmd() {
@@ -189,6 +154,9 @@ prompt_pure_precmd() {
 
 	# git info
 	vcs_info
+
+  # in a background subshell, updates a "diff" file for 
+  (git_check_upstream &)
 
 	# reset value since `preexec` isn't always triggered
 	unset cmd_timestamp
