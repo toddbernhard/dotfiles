@@ -1,0 +1,14 @@
+[alias]
+  br = branch
+  co = checkout
+  ad = add -A .
+  com = !git add -A . && git commit
+  my-recent = !git log --pretty=format:'%Cgreen%ad %C(red)%h%Creset - %s' --date=short --reverse --all --since=2.months.ago --author=todd
+  tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[branch]
+  autosetuprebase = always
+[push]
+  default = current
+[core]
+  autocrlf = input
+  excludesfile = /home/todd/.gitignore_global
