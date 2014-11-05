@@ -12,3 +12,6 @@
 [core]
   autocrlf = input
   excludesfile = /home/todd/.gitignore_global
+[user]
+	name = Todd Bernhard
+	email = bernhard.todd@gm"ail.c"om
