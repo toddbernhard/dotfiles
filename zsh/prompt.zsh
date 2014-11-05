@@ -170,4 +170,5 @@ prompt_pure_preexec() {
 	print -Pn "\a"
 }
 
+setopt PROMPT_SUBST
 prompt_pure_setup "$@"
