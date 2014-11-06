@@ -1,8 +1,8 @@
 [alias]
   a = add -A .
   b = branch
-  c = !git a && git commit --short
-  cm = !git add -A . && git commit --short -m
+  c = !git a && git commit
+  cm = !git add -A . && git commit -m
   co = checkout
   s = status --short
   
