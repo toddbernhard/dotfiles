@@ -2,7 +2,7 @@
   a = add -A .
   b = branch
   c = !git a && git commit --short
-  cm = !git a && git commit --short -m
+  cm = !git add -A . && git commit --short -m
   co = checkout
   s = status --short
   
@@ -28,3 +28,8 @@
 [user]
 	name = Todd Bernhard
 	email = bernhard.todd@gm"ail.c"om
+
+# to override settings without putting them in source control, add them to this file
+# useful for overriding [user]
+[include]
+  path = ~/.gitconfig.local
