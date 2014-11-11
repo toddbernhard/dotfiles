@@ -4,10 +4,10 @@
   c = !git a && git commit
   cm = !git add -A . && git commit -m
   co = checkout
+  d = !git a && git diff --cached
   s = status --short
   
   del = push --delete
-  if = !git a && git diff --cached
   amend = !git a && git commit --amend --no-edit
   ammend = !git a && git commit --amend --no-edit
   
