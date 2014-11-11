@@ -19,6 +19,7 @@
 # %m => shortname host
 # %(?..) => prompt conditional - %(condition.true.false)
 
+setopt PROMPT_SUBST
 
 host() {
   echo -n "%F{${ZSH_PROMPT_HOST_COLOR:-"green"}}${ZSH_PROMPT_HOST:-"%m"}%f"
@@ -29,23 +30,22 @@ host() {
 abbrev_pwd() {
   ABBREV_LENGTH=3
   stub=""
-  leftover=`print -P "%~"`
+  leftover=`print -P "%~"`   #leftover=`$PWD|sed -e "s!$HOME!~!"` # for bash
 
-  #leftover=`$PWD|sed -e "s!$HOME!~!"` # for bash
   #echo "$stub | $leftover"
 
   if [ `expr index "$leftover" "~"` -eq 1 ];then
+    # echo "true"
     stub="~"
-    leftover=`echo ${leftover:1}`
+    leftover=`echo $leftover | sed -re 's!^~(.*)$!\1!'`
   fi
 
   #echo "$stub | $leftover"
-  while [ `expr index "${leftover:1}" "/"` -gt 1 ]
-  do
+  if [ `echo "$leftover" | sed -re 's![^/]!!g' | wc -c` -gt 2 ]; then
     stub=$stub`echo $leftover|sed -re "s!([^/]{1,$ABBREV_LENGTH})[^/]*/.*!\1!"`
     leftover=`echo $leftover|sed -re "s![^/]+/(.*)!\1!"`
     #echo "$stub | $leftover"
-  done
+  fi
   echo -n "%F{${ZSH_PROMPT_PWD_COLOR:-"blue"}}$stub$leftover%f"
 }
 
@@ -170,5 +170,4 @@ prompt_pure_preexec() {
 	print -Pn "\a"
 }
 
-setopt PROMPT_SUBST
 prompt_pure_setup "$@"
