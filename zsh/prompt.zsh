@@ -1,4 +1,4 @@
-# ZSH prompt, customized by Todd Bernhard
+#[ ZSH prompt, customized by Todd Bernhard
 
 # Adapted from:
 # Pure
@@ -87,8 +87,8 @@ git_check_upstream() {
        # check if there is an upstream configured for this branch
 	     command git rev-parse --abbrev-ref @'{u}' &>/dev/null && {
          local diff=''
-         (( $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && diff+='down'
-         (( $(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) && diff+='up'
+         test "$(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) -gt 0" && diff+='down'
+         test "$(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) -gt 0" && diff+='up'
          echo "$diff" > "$git_path$diff_path"
       }
 
@@ -99,23 +99,26 @@ git_check_upstream() {
 
 # reads 'upstream-diff' and prints arrows
 git_print_upstream() {
-  # check if we're in a git repo
-  git_path=$(git rev-parse --git-dir 2> /dev/null)
-  if [  $? = 0 ]; then
-    git_path=${git_path%.git}
+  
+  if [ -z "$ZSH_PROMPT_DISABLE_UPSTREAM" ]; then
+    # check if we're in a git repo
+    git_path=$(git rev-parse --git-dir 2> /dev/null)
+    if [  $? = 0 ]; then
+      git_path=${git_path%.git}
 
-    diff="$git_path$diff_path"
-    if [ -r "$diff" ]; then
+      diff="$git_path$diff_path"
+      if [ -r "$diff" ]; then
 
-      echo -n "%F{yellow}"
-      case $(cat $diff) in
-        updown | downup) echo -n "⇅ " ;;
-        down) echo -n "↓ ";;
-        up) echo -n "↑ " ;;
-        *) ;;
-      esac
-      echo -n "%f"
+        echo -n "%F{yellow}"
+        case $(cat $diff) in
+          updown | downup) echo -n "⇅ " ;;
+          down) echo -n "↓ ";;
+          up) echo -n "↑ " ;;
+          *) ;;
+        esac
+        echo -n "%f"
 
+      fi
     fi
   fi
 }
@@ -150,17 +153,19 @@ right_prompt() {
 }
 
 prompt_pure_precmd() {
-	# shows the full path in the title
-	print -Pn '\e]0;%~\a'
+  # shows the full path in the title
+  print -Pn '\e]0;%~\a'
 
-	# git info
-	vcs_info
+  # git info
+  vcs_info
 
   # in a background subshell, updates a "diff" file for 
-  (git_check_upstream &)
-
-	# reset value since `preexec` isn't always triggered
-	unset cmd_timestamp
+  if [ -z "$ZSH_PROMPT_DISABLE_UPSTREAM" ]; then
+    (git_check_upstream &)
+  fi
+ 
+  #reset value since `preexec` isn't always triggered
+  unset cmd_timestamp
 }
 
 prompt_pure_preexec() {
