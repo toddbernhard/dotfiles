@@ -1,5 +1,5 @@
 
-export SHELL=zsh
+export SHELL=/usr/bin/zsh
 export EDITOR=vim
 
 ZLE_RPROMPT_INDENT=0  # so right margin 

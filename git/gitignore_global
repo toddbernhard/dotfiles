@@ -17,5 +17,10 @@
 ehthumbs.db
 Thumbs.db
 
+# Temp files #
+# ############
+*.swp
+*.swo
+
 .zsh-checking*
 .zsh-upstream*
