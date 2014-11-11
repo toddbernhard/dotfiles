@@ -145,7 +145,7 @@ prompt_pure_setup() {
 }
 
 left_prompt() {
-  echo -n "\n▏$(host) $(abbrev_pwd) $(exit_code)⤜ "  # ᚛"
+  echo -n "\n▏$(host) $(abbrev_pwd) $(exit_code)⤜  "  # ᚛"
 }
 
 right_prompt() {
