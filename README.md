@@ -11,6 +11,7 @@ Dotfiles
 
 ### vim
 - clone git@github.com:gmarik/Vundle.vim.git
+- :BundleInstall
 
 ### zsh
 ### tmux
