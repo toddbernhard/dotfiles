@@ -2,7 +2,7 @@
   a = add -A .
   b = branch
   c = !git a && git commit
-  cm = !git add -A . && git commit -m
+  cm = !git a && git commit -m
   co = checkout
   d = !git a && git diff --cached
   s = status --short

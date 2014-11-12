@@ -20,6 +20,7 @@
 # %(?..) => prompt conditional - %(condition.true.false)
 
 setopt PROMPT_SUBST
+export ZLE_RPROMPT_INDENT=0  # no right margin
 
 host() {
   echo -n "%F{${ZSH_PROMPT_HOST_COLOR:-"green"}}${ZSH_PROMPT_HOST:-"%m"}%f"

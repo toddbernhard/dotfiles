@@ -1,0 +1,10 @@
+
+current_directory=$(dirname $0:A)
+source "$current_directory/aliases.zsh"
+source "$current_directory/key_bindings.zsh"
+source "$current_directory/misc.zsh"
+source "$current_directory/prompt.zsh"
+
+if [ -r ~/.zshrc_local ]; then
+  source ~/local.zshrc
+fi
