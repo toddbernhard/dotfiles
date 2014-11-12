@@ -73,7 +73,7 @@ touch_lock_path=".zsh-checking-upstream"
 diff_path=".zsh-upstream-diff"
 
 # fetches and updates upstream-diff' with "downup", "down", "up"
-git_fetch_upstream() {
+git_check_upstream() {
 
   upstream_diff() {
     command git fetch &>/dev/null &&   # check if there is anything to pull
@@ -82,10 +82,10 @@ git_fetch_upstream() {
       local down_commits=$(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null)
       local up_commits=$(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null)
       local diff=''
-      if [ $down -gt 0 ]; then
+      if [[ $down -gt 0 ]]; then
         diff+='down'
       fi
-      if [ $up -gt 0 ]; then
+      if [[ $up -gt 0 ]]; then
         diff+='up'
       fi
       echo -n $diff
@@ -106,6 +106,7 @@ git_fetch_upstream() {
        echo $diff > $diff_path
  
        rm "$touch_lock"
+    fi
   fi
 }
 
