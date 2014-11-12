@@ -17,4 +17,3 @@ bindkey -v  # vi mode, vs emacs
 
 export SHELL=/bin/zsh
 export EDITOR=/usr/bin/vim
-

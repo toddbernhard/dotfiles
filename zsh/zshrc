@@ -1,10 +1,23 @@
+#!/usr/bin/env zsh
 
-current_directory=$(dirname $0:A)
-source "$current_directory/aliases.zsh"
-source "$current_directory/key_bindings.zsh"
-source "$current_directory/misc.zsh"
-source "$current_directory/prompt.zsh"
+function script_parent_directory() {
+  # from http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
+  SOURCE=".zshrc"
+  while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+  done
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  echo -n $DIR
+}
 
-if [ -r ~/.zshrc_local ]; then
-  source ~/local.zshrc
+src_dir=$(script_parent_directory)
+source "$src_dir"/aliases.zsh
+source "$src_dir"/key_bindings.zsh
+source "$src_dir"/misc.zsh
+source "$src_dir"/prompt.zsh
+
+if [ -r "local.zshrc" ]; then
+  source "local.zshrc"
 fi
