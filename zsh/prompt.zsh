@@ -95,6 +95,7 @@ git_check_upstream() {
   # check if we're in a git repo
   git_path=$(git rev-parse --git-dir 2> /dev/null)
   if [ $? = 0 ]; then
+  if [ -z "$ZSH_PROMPT_DISABLE_UPSTREAM" ]; then
     git_path=${git_path%.git}
     
     # prevents parallel runs      
@@ -107,6 +108,7 @@ git_check_upstream() {
  
        rm "$touch_lock"
     fi
+  fi
   fi
 }
 
