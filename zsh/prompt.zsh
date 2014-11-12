@@ -35,7 +35,7 @@ abbrev_pwd() {
 
   #echo "$stub | $leftover"
 
-  if [ `expr index "$leftover" "~"` -eq 1 ];then
+  if [ `expr index "$leftover" "~"` -eq 1 ]; then
     # echo "true"
     stub="~"
     leftover=`echo $leftover | sed -re 's!^~(.*)$!\1!'`
@@ -72,8 +72,26 @@ git_dirty() {
 touch_lock_path=".zsh-checking-upstream"
 diff_path=".zsh-upstream-diff"
 
-# fetches and updates 'upstream-diff' with "downup", "down", "up"
-git_check_upstream() {
+# fetches and updates upstream-diff' with "downup", "down", "up"
+git_fetch_upstream() {
+
+  upstream_diff() {
+    command git fetch &>/dev/null &&   # check if there is anything to pull
+    command git rev-parse --abbrev-ref @'{u}' &>/dev/null &&   # check if there is an upstream configured for this branch
+    {
+      local down_commits=$(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null)
+      local up_commits=$(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null)
+      local diff=''
+      if [ $down -gt 0 ]; then
+        diff+='down'
+      fi
+      if [ $up -gt 0 ]; then
+        diff+='up'
+      fi
+      echo -n $diff
+    }
+  }
+
   # check if we're in a git repo
   git_path=$(git rev-parse --git-dir 2> /dev/null)
   if [ $? = 0 ]; then
@@ -83,18 +101,11 @@ git_check_upstream() {
     touch_lock="$git_path$touch_lock_path"
     if [ ! -e $touch_lock ]; then
        touch "$touch_lock"
-       # check if there is anything to pull
-       command git fetch &>/dev/null &&
-       # check if there is an upstream configured for this branch
-	     command git rev-parse --abbrev-ref @'{u}' &>/dev/null && {
-         local diff=''
-         test "$(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) -gt 0" && diff+='down'
-         test "$(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null) -gt 0" && diff+='up'
-         echo "$diff" > "$git_path$diff_path"
-      }
 
-      rm "$touch_lock"
-    fi
+       local diff=$(upstream_diff)
+       echo $diff > $diff_path
+ 
+       rm "$touch_lock"
   fi
 }
 
