@@ -73,7 +73,7 @@ touch_lock_path=".zsh-checking-upstream"
 diff_path=".zsh-upstream-diff"
 
 # fetches and updates upstream-diff' with "downup", "down", "up"
-git_fetch_upstream() {
+git_check_upstream() {
 
   upstream_diff() {
     command git fetch &>/dev/null &&   # check if there is anything to pull
@@ -106,6 +106,7 @@ git_fetch_upstream() {
        echo $diff > $diff_path
  
        rm "$touch_lock"
+    fi
   fi
 }
 
