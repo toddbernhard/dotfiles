@@ -1,21 +1,48 @@
+" Vundle required
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()  " set the runtime path to include Vundle and initialize
+Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle, required
+" All Plugins
+
+Bundle 'groenewege/vim-less'
+Plugin 'kchmck/vim-coffee-script'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" End of Vundle
+
 
 syntax on
 
 set nocompatible          " Who cares about VI compatability
-set laststatus=2          " Always show the statusline
 set encoding=utf-8        " Necessary to show Unicode glyphs
+
+set expandtab             " Replace tabs with space
 set tabstop=2
 set softtabstop=2
+
+set scrolloff=4           " Scroll this many lines boyond cursor
+
 set number                " Show line numbers
-set expandtab
+set relativenumber        " Show relative line numbers
+" set laststatus=2          " Always show the statusline
+" set ruler                 " Show row,col in statusline
+
 set incsearch             " Incremental search
 set ignorecase            " Ignore case in search ...
 set smartcase             "  unless upper case chars occur in search string
-set bs=indent,eol,start
 
-set t_Co=256
+set backspace=indent,eol,start  " Allows bs'ing across these things
+
+" set t_Co=256
 set background=dark
 
 " Map w!! to write file with sudo, when forgot to open with sudo.
 cmap w!! w !sudo tee % >/dev/null
 
+nnoremap ; :
+nnoremap ;; :w<CR>
+nnoremap q; :wq<CR>
