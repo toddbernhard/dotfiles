@@ -1,8 +1,7 @@
-dir="$(dirname $0)"
-source "$dir/aliases.zsh"
-source "$dir/key_bindings.zsh"
-source "$dir/misc.zsh"
-source "$dir/prompt.zsh"
+source "$ZSH_SRC/aliases.zsh"
+source "$ZSH_SRC/key_bindings.zsh"
+source "$ZSH_SRC/misc.zsh"
+source "$ZSH_SRC/prompt.zsh"
 
 if [ -r "$HOME/local.zshrc" ]; then
   source "$HOME/local.zshrc"
