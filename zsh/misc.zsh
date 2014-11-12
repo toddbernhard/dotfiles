@@ -17,3 +17,5 @@ bindkey -v  # vi mode, vs emacs
 
 export SHELL=/bin/zsh
 export EDITOR=/usr/bin/vim
+
+export PATH=/sbin:/usr/sbin:"$PATH"
