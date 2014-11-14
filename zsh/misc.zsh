@@ -19,3 +19,7 @@ export SHELL=/bin/zsh
 export EDITOR=/usr/bin/vim
 
 export PATH=/sbin:/usr/sbin:"$PATH"
+
+export ACK_COLOR_MATCH="bold blue"
+export ACK_COLOR_LINENO="yellow"
+export ACK_COLOR_FILENAME="green"

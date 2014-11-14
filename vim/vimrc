@@ -10,6 +10,8 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'groenewege/vim-less'
 Plugin 'kchmck/vim-coffee-script'
 Bundle 'derekwyatt/vim-scala'
+Bundle 'mileszs/ack.vim'
+Bundle 'myusuf3/numbers.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -45,9 +47,13 @@ set background=dark
 " Map w!! to write file with sudo, when forgot to open with sudo.
 cmap w!! w !sudo tee % >/dev/null
 
-" In normal mode, map <tab> to nerdtree
-nnoremap <C-I> :NERDTreeToggle<CR>
+" In normal mode, map <tab> to switch tabs
+nnoremap <C-I> :tabn<CR>
+" In normal mode, map <shift+tab> to NERDTree
+nnoremap <S-Tab> :NERDTreeToggle<CR>
 
 nnoremap ;  : 
 nnoremap ;; :w<CR>
 nnoremap q; :wq<CR>
+
+set omnifunc=syntaxcomplete
