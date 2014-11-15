@@ -12,11 +12,18 @@ Plugin 'kchmck/vim-coffee-script'
 Bundle 'derekwyatt/vim-scala'
 Bundle 'mileszs/ack.vim'
 Bundle 'myusuf3/numbers.vim'
+Bundle 'kien/ctrlp.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " End of Vundle
+
+
+" Run mkdir ~-p /.vim/backup ~/vim/swp ~/.vim/undo
+set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
 
 
 syntax on
@@ -43,17 +50,57 @@ set backspace=indent,eol,start  " Allows bs'ing across these things
 
 " set t_Co=256
 set background=dark
+hi Search ctermfg=152
+hi Search ctermbg=236
+
+set wildignore+=*/target/*,*.swo,*.swp
 
 " Map w!! to write file with sudo, when forgot to open with sudo.
 cmap w!! w !sudo tee % >/dev/null
 
 " In normal mode, map <tab> to switch tabs
 nnoremap <C-I> :tabn<CR>
+
 " In normal mode, map <shift+tab> to NERDTree
 nnoremap <S-Tab> :NERDTreeToggle<CR>
 
-nnoremap ;  : 
+
+" In normal mode, map <'> to CtrlP
+nnoremap ' :CtrlP<CR>
+
+" In normal mode, map <ctrl+/> to toggle search highlightling
+nnoremap <C-l> :set hlsearch!<CR>
+
+" Single semi-colon <;> maps to full on colon <:>
+nnoremap ;  :
+
+" Double semi-colon <;;> maps to Save
 nnoremap ;; :w<CR>
+
+" <q-semi> maps to Save & Quit
 nnoremap q; :wq<CR>
 
-set omnifunc=syntaxcomplete
+" set omnifunc=syntaxcomplete
+
+" "  NerdTree -- highlight current file
+" Check if NERDTree is open or active
+function! rc:isNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+" from https://gist.github.com/ashwin/3c6a40b2d1245f1c5b96
+function! rc:syncTree()
+  if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+" Highlight currently open buffer in NERDTree
+autocmd BufEnter * call rc:syncTree()
+" " End highlight current file
+
+" Automatically strip whitespace on save
+autocmd BufWritePre * :%s/\s\+$//e
