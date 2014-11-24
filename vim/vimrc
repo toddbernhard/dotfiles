@@ -84,22 +84,22 @@ nnoremap q; :wq<CR>
 
 " "  NerdTree -- highlight current file
 " Check if NERDTree is open or active
-function! rc:isNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
+" function! rc:isNERDTreeOpen()
+"   return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+" endfunction
 
 " Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
 " file, and we're not in vimdiff
 " from https://gist.github.com/ashwin/3c6a40b2d1245f1c5b96
-function! rc:syncTree()
-  if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
+" function! rc:syncTree()
+"   if &modifiable && rc:isNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+"     NERDTreeFind
+"     wincmd p
+"   endif
+" endfunction
 
 " Highlight currently open buffer in NERDTree
-autocmd BufEnter * call rc:syncTree()
+" autocmd BufEnter * call rc:syncTree()
 " " End highlight current file
 
 " Automatically strip whitespace on save
