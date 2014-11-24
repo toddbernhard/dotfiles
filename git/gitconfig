@@ -7,12 +7,13 @@
   co = checkout
   d = !git a && git diff --cached
   s = status --short
-  
+
   del = push --delete
   dif = diff --cached
   amend = !git a && git commit --amend --no-edit
   ammend = !git a && git commit --amend --no-edit
-  
+  new = checkout -b
+
   recent = !git log --pretty=format:'%Cgreen%ad %C(red)%h%Creset - %s' --date=short --reverse --all --since=2.months.ago --author=todd
   tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
@@ -20,7 +21,7 @@
   autosetuprebase = always
 
 [push]
-  default = tracking
+  default = simple
 
 [core]
   autocrlf = input
