@@ -72,9 +72,6 @@ vnoremap <C-I> >
 inoremap <S-Tab> <Esc><<i
 vnoremap <S-Tab> <
 
-" " In normal mode, map <shift+tab> to NERDTree
-" nnoremap <S-Tab> :NERDTreeToggle<CR>
-
 " In normal mode, map <'> to CtrlP
 nnoremap ' :CtrlP<CR>
 
