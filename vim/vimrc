@@ -56,7 +56,7 @@ set background=dark
 hi Search ctermfg=152
 hi Search ctermbg=236
 
-set wildignore+=*/target/*,*.swo,*.swp
+set wildignore+=*/target/*,*.swo,*.swp,*/dist/*
 
 " Map w!! to write file with sudo, when forgot to open with sudo.
 cmap w!! w !sudo tee % >/dev/null

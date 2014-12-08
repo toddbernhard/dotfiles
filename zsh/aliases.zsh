@@ -2,6 +2,9 @@
 
 alias la="ls -al"
 alias rn="ls"
+alias /-="ls"
+
+alias dud="du -h -c -d "
 
 alias svim="sudo vim"
 
