@@ -61,6 +61,8 @@ set wildignore+=*/target/*,*.swo,*.swp,*/dist/*
 " Map w!! to write file with sudo, when forgot to open with sudo.
 cmap w!! w !sudo tee % >/dev/null
 
+inoremap <Esc> <Esc>l
+
 " In normal mode, map <tab>,<shift+tab> to next,prev tab
 nnoremap <C-I> :tabn<CR>
 nnoremap <S-Tab> :tabp<CR>
@@ -71,6 +73,10 @@ vnoremap <C-I> >
 " In visual and insert mode, map <shift+tab> to un-indent
 inoremap <S-Tab> <Esc><<i
 vnoremap <S-Tab> <
+
+noremap + :LAck "\W<cword>\W"<CR>
+noremap - :lnext<CR>
+noremap _ :lprevious<CR>
 
 " In normal mode, map <'> to CtrlP
 nnoremap ' :CtrlP<CR>
@@ -84,9 +90,6 @@ nnoremap ;  :
 " Double semi-colon <;;> maps to Save
 nnoremap ;; :w<CR>
 
-" <q-semi> maps to Save & Quit
-nnoremap q; :wq<CR>
-
 " set omnifunc=syntaxcomplete
 
 " Automatically strip whitespace on save
@@ -98,3 +101,8 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
 
+
+" Ack.vim settings
+" let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case"
+let g:ack_autoclose = 1
+" let g:ackpreview = 1
