@@ -15,6 +15,7 @@ bindkey -v  # vi mode, vs emacs
 
 #autoload
 
+export TERM=xterm-256color
 export SHELL=/bin/zsh
 export EDITOR=/usr/bin/vim
 
