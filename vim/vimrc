@@ -40,8 +40,6 @@ set scrolloff=4           " Scroll this many lines boyond cursor
 
 set number                " Show line numbers
 set relativenumber        " Show relative line numbers
-" set laststatus=2          " Always show the statusline
-" set ruler                 " Show row,col in statusline
 
 set incsearch             " Incremental search
 set ignorecase            " Ignore case in search ...
@@ -106,3 +104,6 @@ let g:ctrlp_prompt_mappings = {
 " let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case"
 let g:ack_autoclose = 1
 " let g:ackpreview = 1
+
+highlight LineNr ctermfg=237
+highlight CursorLineNr ctermfg=240
