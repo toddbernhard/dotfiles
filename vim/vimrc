@@ -20,7 +20,7 @@ filetype plugin indent on    " required
 " End of Vundle
 
 
-" Run mkdir ~-p /.vim/backup ~/vim/swp ~/.vim/undo
+" Run mkdir -p ~/.vim/backup ~/vim/swp ~/.vim/undo
 set undodir=~/.vim/undo//
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//

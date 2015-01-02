@@ -21,7 +21,7 @@
   autosetuprebase = always
 
 [push]
-  default = simple
+  default = current
 
 [core]
   autocrlf = input
