@@ -13,6 +13,7 @@ setopt extendedglob  # enables things like "cp ^*.(tar|bz2|gz)"
 setopt dotglob  # show hidden files in tab completion
 unsetopt beep  # no beep?
 
+[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 export SHELL=/bin/zsh
 export EDITOR=/usr/bin/vim
 
