@@ -26,7 +26,7 @@
 [core]
   autocrlf = input
   editor = vim
-  excludesfile = /home/todd/.gitignore_global
+  excludesfile = ~/.gitignore_global
 
 [user]
   name = Todd Bernhard

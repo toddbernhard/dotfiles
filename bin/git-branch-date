@@ -1,0 +1,25 @@
+#!/bin/env bash
+
+green='\033[0;32m'
+normal='\033[0m'
+
+formatScript='
+  refname=%(refname)
+  date=%(committerdate:short)
+  display_name=%(refname:short)
+  display_date=%(committerdate:relative)
+
+  most_recent=${most_recent:-"$date"}
+
+  if echo "$refname" | grep -q "refs/remotes"; then
+    clr_name="$green"
+  else
+    clr_name="$normal"
+  fi
+
+  let delt=(`date +%s -d $most_recent`-`date +%s -d $date`)
+  echo -e "$most_recent \t$clr_name$display_name\t\t$display_date\t$delt";
+'
+
+eval=`git for-each-ref --shell --sort='-committerdate' --format="$formatScript"`
+eval "$eval"
