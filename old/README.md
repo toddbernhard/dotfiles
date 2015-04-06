@@ -1,1 +1,0 @@
-clone and install.sh

@@ -1,21 +1,37 @@
 Dotfiles
-=========
+========
 
-##### ssh
-- Setup client RSA keys
-- Add common destinations to ~/.ssh/config -- https://wiki.archlinux.org/index.php/Secure_Shell#Saving_connection_data_in_ssh_config
+#### ssh client
+- setup client RSA keys
+  - github
+  - home
+  - office
+- add common destinations to `~/.ssh/config` -- https://wiki.archlinux.org/index.php/Secure_Shell#Saving_connection_data_in_ssh_config
 
-##### git
+#### sshd server
+- create group -- `sudo groupadd ssh`
+- create users if necessary
+- add users to group -- `sudo usermod -a --groups ssh <username>`
+- `sshd_config` edits:
+  - `AllowGroups ssh`
+  - `PasswordAuthentication no`
+
+#### git
 - upload ssh key to github
-- add user.name, user.email to ~/local.gitconfig
+- add `user.name`, `user.email` to `~/local.gitconfig`
 
-##### vim
-- clone git@github.com:gmarik/Vundle.vim.git
-- :BundleInstall
+#### vim
+- `mkdir -p ~/.vim/backup ~/.vim/swp ~/.vim/undo`
+- `git clone git@github.com:gmarik/Vundle.vim.git ~/.vim/bundle`
+- inside vim `:BundleInstall`
 
-##### ack
+#### zsh
+- create `~/.zshrc`
+  - `export ZSH_SRC=<path/to/dotfiles/zsh>`
+  - `source $ZSH_SRC/all.zsh`
+- change login shell in `/etc/passwd`
+
+#### tmux
+
+#### ack
 - http://beyondgrep.com/install/
-
-### zsh
-### tmux
-### bash scripts
