@@ -1,15 +1,19 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 
-green='\033[0;32m'
 normal='\033[0m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+red='\033[0;31m'
+seconds_per_day=86400
 
 formatScript='
   refname=%(refname)
-  date=%(committerdate:short)
-  display_name=%(refname:short)
-  display_date=%(committerdate:relative)
+  commit_date=%(committerdate:short)
+  short_name=`printf "%-30s" %(refname:short)`
+  diff_text=%(committerdate:relative)
 
-  most_recent=${most_recent:-"$date"}
+  most_recent=${most_recent:-$commit_date}  # set on first iteration
+  let delt=(`date +%s -d "$most_recent"`-`date +%s -d "$commit_date"`)/$seconds_per_day
 
   if echo "$refname" | grep -q "refs/remotes"; then
     clr_name="$green"
@@ -17,9 +21,20 @@ formatScript='
     clr_name="$normal"
   fi
 
-  let delt=(`date +%s -d $most_recent`-`date +%s -d $date`)
-  echo -e "$most_recent \t$clr_name$display_name\t\t$display_date\t$delt";
+  if [ "$delt" -lt 8 ]; then
+    clr_diff="$normal"
+  elif [ "$delt" -lt 31 ]; then
+    clr_diff="$green"
+  elif [ "$delt" -lt 91 ]; then
+    clr_diff="$yellow"
+  elif [ "$delt" -lt 366 ]; then
+    clr_diff="$red"
+  else
+    clr_diff="$normal"
+  fi
+
+  echo -e "$commit_date\t$clr_name$short_name\t$clr_diff$diff_text$normal"
 '
 
-eval=`git for-each-ref --shell --sort='-committerdate' --format="$formatScript"`
+eval=`git for-each-ref --shell --sort='-committerdate' --format="$formatScript" refs/heads refs/remotes`
 eval "$eval"
