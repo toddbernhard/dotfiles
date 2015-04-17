@@ -62,8 +62,9 @@ set wildignore+=*/target/*,*.swo,*.swp,*/dist/*
 cmap w!! w !sudo tee % >/dev/null
 
 " Makes the cursor stay in place as you leave insert mode
+autocmd InsertLeave * :normal `^
+" XXX Attempt below breaks arrow keys in insert mode in some envs/contexts!!!
 " inoremap <Esc> <Esc>l
-" XXX Breaks arrow keys in insert mode in some envs/contexts!!!
 
 " In normal mode, map <tab>,<shift+tab> to next,prev tab
 nnoremap <C-I> :tabn<CR>
