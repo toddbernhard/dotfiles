@@ -28,7 +28,6 @@ set directory=~/.vim/swp//
 
 syntax on
 
-set nocompatible          " Who cares about VI compatability
 set encoding=utf-8        " Necessary to show Unicode glyphs
 
 set expandtab             " Replace tabs with space
@@ -63,13 +62,9 @@ set wildignore+=*/target/*,*.swo,*.swp,*/dist/*
 cmap w!! w !sudo tee % >/dev/null
 
 " Makes the cursor stay in place as you leave insert mode
-inoremap <Esc> <Esc>l
-
-" If bindings/$TERM is messed up, this remaps arrow keys to directions
-imap OA <ESC>ki
-imap OB <ESC>ji
-imap OC <ESC>li
-imap OD <ESC>hi
+autocmd InsertLeave * :normal `^
+" XXX Attempt below breaks arrow keys in insert mode in some envs/contexts!!!
+" inoremap <Esc> <Esc>l
 
 " In normal mode, map <tab>,<shift+tab> to next,prev tab
 nnoremap <C-I> :tabn<CR>
@@ -81,10 +76,6 @@ vnoremap <S-Tab> <
 
 " In insert mode, map <shift+tab> to un-indent
 inoremap <S-Tab> <Esc><<i
-
-noremap + :LAck "\W<cword>\W"<CR>
-noremap - :lnext<CR>
-noremap _ :lprevious<CR>
 
 " In normal mode, map <'> to CtrlP
 nnoremap ' :CtrlP<CR>
@@ -114,4 +105,9 @@ let g:ctrlp_prompt_mappings = {
 " let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case"
 let g:ack_autoclose = 1
 " let g:ackpreview = 1
+
+" Ack convenience
+noremap + :LAck "\W<cword>\W"<CR>
+noremap - :lnext<CR>
+noremap _ :lprevious<CR>
 
