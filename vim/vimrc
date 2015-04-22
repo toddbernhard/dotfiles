@@ -55,7 +55,7 @@ hi Search ctermbg=236
 
 " tone down line numbers, current line is a bit brighter
 highlight LineNr ctermfg=237
-highlight CursorLineNr ctermfg=241
+highlight CursorLineNr ctermfg=245
 
 set wildignore+=*/target/*,*.swo,*.swp,*/dist/*
 

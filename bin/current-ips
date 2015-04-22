@@ -1,0 +1,9 @@
+#!/bin/bash
+
+rem="$(curl -s icanhazip.com)"
+loc="$(ifconfig |
+         grep 'inet ' |
+         head -1 |
+         perl -ne 's|.*inet (?:addr:)?(?:192)?([\d]{0,3})\.(?:168)?([\d]{0,3})\.[1(?=\.)]?([\d]{0,3})\.([\d]{0,3}).*|$1.$2.$3.$4|g; print;')"
+
+echo -n "$loc  $rem"

@@ -1,6 +1,3 @@
-Dotfiles
-========
-
 #### ssh client
 - setup client RSA keys
   - github
