@@ -18,8 +18,8 @@
 - add `user.name`, `user.email` to `~/local.gitconfig`
 
 #### vim
-- `mkdir -p ~/.vim/backup ~/.vim/swp ~/.vim/undo`
-- `git clone git@github.com:gmarik/Vundle.vim.git ~/.vim/bundle`
+- `mkdir -p ~/.vim/backup ~/.vim/swp ~/.vim/undo ~/.vim/bundle`
+- `git clone git@github.com:gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 - inside vim `:BundleInstall`
 
 #### zsh
