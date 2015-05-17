@@ -5,6 +5,7 @@ alias rn="ls"
 alias /-="ls"
 
 alias dud="du -h -c -d "  # disk usage depth
+alias df="df -h"
 
 alias svim="sudo vim"
 
