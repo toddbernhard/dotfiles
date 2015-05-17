@@ -30,10 +30,6 @@ syntax on
 
 set encoding=utf-8        " Necessary to show Unicode glyphs
 
-set expandtab             " Replace tabs with space
-set tabstop=2
-set softtabstop=2
-
 set scrolloff=4           " Scroll this many lines boyond cursor
 
 set number                " Show line numbers
@@ -46,6 +42,15 @@ set smartcase             "  unless upper case chars occur in search string
 set backspace=indent,eol,start  " Allows bs'ing across these things
 
 set wrap
+
+" Tab settings
+set expandtab       " Replace tabs with space
+set tabstop=2       " (defaults)
+set softtabstop=2
+set shiftwidth=2
+
+autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+
 
 " set t_Co=256
 set background=dark
@@ -92,7 +97,7 @@ nnoremap ;; :w<CR>
 " set omnifunc=syntaxcomplete
 
 " Automatically strip whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 " Ctrl-P : open in new tab by default
 let g:ctrlp_prompt_mappings = {
@@ -110,4 +115,3 @@ let g:ack_autoclose = 1
 noremap + :LAck "\W<cword>\W"<CR>
 noremap - :lnext<CR>
 noremap _ :lprevious<CR>
-
