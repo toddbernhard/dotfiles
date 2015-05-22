@@ -50,6 +50,7 @@ set softtabstop=2
 set shiftwidth=2
 
 autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
+autocmd Filetype html setlocal tabstop=4 softtabstop=4 shiftwidth=4
 
 
 " set t_Co=256
