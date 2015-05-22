@@ -28,6 +28,10 @@
   - `source $ZSH_SRC/all.zsh`
 - change login shell in `/etc/passwd`
 
+#### irssi
+- install
+- symlink: `ln -s <checkout>/irssi/config ~/.irssi/config`
+
 #### tmux
 
 #### ack
