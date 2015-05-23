@@ -41,6 +41,8 @@ set smartcase             "  unless upper case chars occur in search string
 
 set backspace=indent,eol,start  " Allows bs'ing across these things
 
+set history=200           " Remember 200 lines
+
 set wrap
 
 " Tab settings
