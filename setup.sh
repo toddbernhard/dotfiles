@@ -37,8 +37,41 @@ git () {
   program_on_path "git" inner_git
 }
 inner_git () {
+  git_program=`type -P git`
+
   symlink "$DIR/git/gitconfig" "$HOME/.gitconfig"
   symlink "$DIR/git/gitignore_global" "$HOME/.gitignore_global"
+  
+  # Setup local user info
+  gitlocal="$HOME/.gitconfig.local"
+  if [ ! -e "$gitlocal" ]; then
+    touch "$gitlocal"
+    echo "Created file $gitlocal"
+  fi
+
+  if [ ! -f "$gitlocal" -o ! -w "$gitlocal" ]; then
+    echo "$gitlocal is not writeable, or is not a normal file."
+    echo "Skipping setup of git username and email."
+  else
+    if ! grep -q "name" "$gitlocal"; then
+      echo -ne "\nEnter username for git commits: "
+      read username
+      "$git_program" config --file "$gitlocal" --add "user.name" "$username"    
+    fi
+    if ! grep -q "email" "$gitlocal"; then
+      echo -ne "\nEnter email for git commits: "
+      read email
+      "$git_program" config --file "$gitlocal" --add "user.email" "$email"    
+    fi
+
+    set_username=`"$git_program" config "user.name"`
+    set_email=`"$git_program" config "user.email"`
+    echo ""
+    echo "Using git user.name=$set_username"
+    echo "Using git user.email=$set_email"
+    echo ""
+  fi
+  
   echo ""
   echo "[MANUAL STEPS]"
   echo "    see README.md"
@@ -67,12 +100,15 @@ inner_vim () {
   make_dir "$vimdir/swp"
   make_dir "$vimdir/undo"
 
-  #
+  # Install Vundle
   #if [ type "git" > /dev/null ]; then
   #  current_dir=`pwd`
   #  cd "$vimdir/bundle"
   #  git c
   #fi
+
+  # Vimrc
+  symlink "$DIR/vim/vimrc" "$HOME/.vimrc"
 }
 
 
@@ -125,7 +161,7 @@ show_modules () {
 
 choose_one () {
   show_modules
-  PS3="Setup tool: "
+  PS3="Setup #: "
   select mod in "${!modules[@]}" "< back <"; do
     back_option=$(( ${#modules[@]} + 1))
     if [ ${modules[$mod]+found} ]; then

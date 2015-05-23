@@ -18,7 +18,6 @@
 
 ###### git
 - upload ssh key to github
-- add `user.name`, `user.email` to `~/local.gitconfig`
 
 ###### vim
 - `git clone git@github.com:gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
