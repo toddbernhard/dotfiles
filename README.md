@@ -1,6 +1,6 @@
 ## Installation
 
-[`setup.sh`](./tree/master/setup.sh) will interactively setup/symlink files for [`git`](./tree/master/git), [`tmux`](./tree/master/tmux), [`vim`](./tree/master/vim) and [`bin/`](./tree/master/bin).
+[`setup.sh`](./setup.sh) will interactively setup/symlink files for [`git`](./git), [`tmux`](./tmux), [`vim`](./vim) and [`bin/`](./bin).
 
 #### Additional manual setup
 
