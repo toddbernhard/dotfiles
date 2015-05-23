@@ -32,7 +32,7 @@ bin () {
 }
 
 
-modules[git]="symlinks ~/.gitconfig, ~/.gitignore_global"
+modules[git]="symlinks ~/.gitconfig, ~/.gitignore_global, sets up local user info"
 git () {
   program_on_path "git" inner_git
 }
@@ -111,6 +111,12 @@ inner_vim () {
   symlink "$DIR/vim/vimrc" "$HOME/.vimrc"
 }
 
+
+modules[irssi]="symlinks ~/.irssi/config"
+irssi () {
+  make_dir "$HOME/.irssi"
+  symlink "$DIR/irssi/config" "$HOME/.irssi/config"
+}
 
 
 #####  Util  ##### 

@@ -1,6 +1,6 @@
 ## Installation
 
-[`setup.sh`](./setup.sh) will interactively setup/symlink files for [`git`](./git), [`tmux`](./tmux), [`vim`](./vim) and [`bin/`](./bin).
+[`setup.sh`](./setup.sh) will interactively setup/symlink files for [`git`](./git), [`irssi`](./irssi), [`tmux`](./tmux), [`vim`](./vim) and [`bin/`](./bin).
 
 #### Additional manual setup
 
@@ -28,9 +28,6 @@
   - `export ZSH_SRC=<path/to/dotfiles/zsh>`
   - `source $ZSH_SRC/all.zsh`
 - change login shell in `/etc/passwd`
-
-###### irssi
-- symlink: `ln -s <checkout>/irssi/config ~/.irssi/config`
 
 ###### ack
 - http://beyondgrep.com/install/
