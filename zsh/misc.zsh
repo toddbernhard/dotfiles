@@ -17,7 +17,7 @@ unsetopt beep  # no beep?
 export SHELL=/bin/zsh
 export EDITOR=/usr/bin/vim
 
-export PATH=/sbin:/usr/sbin:"$PATH"
+export PATH="$HOME"/bin:/sbin:/usr/sbin:"$PATH"
 
 export ACK_COLOR_MATCH="bold cyan"
 export ACK_COLOR_LINENO="yellow"
