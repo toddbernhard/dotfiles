@@ -270,4 +270,11 @@ statusbar = {
 settings = {
   core = { real_name = "todd"; user_name = "todd"; nick = "todd"; };
   "fe-text" = { actlist_sort = "refnum"; };
+  "fe-common/core" = {
+    autoclose_windows = "no";
+    reuse_unused_windows = "yes";
+    beep_when_window_active = "yes";
+    beep_msg_level = "MSGS NOTICES DCC DCCMSGS HILIGHT";
+    bell_beeps = "yes";
+  };
 };

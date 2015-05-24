@@ -129,7 +129,6 @@ make_dir () {
 }
 
 symlink () {
-
   src=$1
   dest=$2
 
