@@ -33,6 +33,8 @@ bin () {
 
 
 modules[git]="symlinks ~/.gitconfig, ~/.gitignore_global, sets up local user info"
+git_program=`type -P git`
+
 git () {
   program_on_path "git" inner_git
 }
@@ -88,7 +90,9 @@ inner_tmux () {
 }
 
 
-modules[vim]="makes .vim directories, symlinks ~/.vimrc"
+modules[vim]="makes .vim directories, symlinks ~/.vimrc, installs Vundle"
+vim_program=`type -P vim`
+
 vim () {
   program_on_path "vim" inner_vim
 }
@@ -101,22 +105,46 @@ inner_vim () {
   make_dir "$vimdir/undo"
 
   # Install Vundle
-  #if [ type "git" > /dev/null ]; then
-  #  current_dir=`pwd`
-  #  cd "$vimdir/bundle"
-  #  git c
-  #fi
+  program_on_path "git" setup_vundle
 
   # Vimrc
   symlink "$DIR/vim/vimrc" "$HOME/.vimrc"
+}
+setup_vundle () {
+  target="$HOME/.vim/bundle/Vundle.vim"
+  if [ ! -e "$target" ]; then
+    "$git_program" clone https://github.com/gmarik/Vundle.vim.git "$target"
+    "$vim_program" +PluginInstall +qall
+    echo "Installed Vundle.vim"
+  fi
 }
 
 
 modules[irssi]="symlinks ~/.irssi/config"
 irssi () {
+  program_on_path "irssi" inner_irssi
+}
+inner_irssi () {
   make_dir "$HOME/.irssi"
   symlink "$DIR/irssi/config" "$HOME/.irssi/config"
 }
+
+
+modules[zsh]="sources all.zsh - prompt, aliases, keys, more"
+zsh () {
+  program_on_path "zsh" inner_zsh
+}
+inner_zsh () {
+  zshrc="$HOME/.zshrc"
+  if [ -e "$zshrc" ]; then
+    if ! grep -q "/all.zsh" "$zshrc"; then
+      echo "source $DIR/zsh/all.zsh" >> "$zshrc"
+    fi
+  else
+    echo "no .zshrc"
+  fi
+}
+
 
 
 #####  Util  ##### 
@@ -141,10 +169,10 @@ symlink () {
 }
 
 program_on_path () {
-  if type "$1" > /dev/null; then
+  if type -P "$1" > /dev/null; then
     "$2"
   else
-    "$1 not found on path. Skipping setup"
+    echo "$1 not found on path. Skipping setup"
   fi
 }
 

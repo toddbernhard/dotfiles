@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 
 alias la="ls -al"
-alias rn="ls"
-alias /-="ls"
+alias rn="ls" # typo
+alias /-="ls" # typo
 
 alias dud="du -h -c -d "  # disk usage depth
 alias df="df -h"

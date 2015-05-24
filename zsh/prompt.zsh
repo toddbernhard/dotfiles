@@ -1,4 +1,4 @@
-#[ ZSH prompt, customized by Todd Bernhard
+#[ ZSH prompt
 
 # Adapted from:
 # Pure

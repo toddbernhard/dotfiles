@@ -1,6 +1,6 @@
 ## Installation
 
-[`setup.sh`](./setup.sh) will interactively setup/symlink files for [`git`](./git), [`irssi`](./irssi), [`tmux`](./tmux), [`vim`](./vim) and [`bin/`](./bin).
+[`setup.sh`](./setup.sh) will optionally configure [`git`](./git), [`irssi`](./irssi), [`tmux`](./tmux), [`vim`](./vim), [`zsh`](./zsh) and [`bin/`](./bin) (scripts).
 
 #### Additional manual setup
 
@@ -19,14 +19,8 @@
 ###### git
 - upload ssh key to github
 
-###### vim
-- `git clone git@github.com:gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-- inside vim `:BundleInstall`
-
 ###### zsh
 - create `~/.zshrc`
-  - `export ZSH_SRC=<path/to/dotfiles/zsh>`
-  - `source $ZSH_SRC/all.zsh`
 - change login shell in `/etc/passwd`
 
 ###### ack
