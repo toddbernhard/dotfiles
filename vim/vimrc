@@ -100,7 +100,7 @@ nnoremap ;; :w<CR>
 " set omnifunc=syntaxcomplete
 
 " Automatically strip whitespace on save
-" autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Ctrl-P : open in new tab by default
 let g:ctrlp_prompt_mappings = {

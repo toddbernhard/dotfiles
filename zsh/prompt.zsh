@@ -31,20 +31,20 @@ host() {
 abbrev_pwd() {
   ABBREV_LENGTH=3
   stub=""
-  leftover=`print -P "%~"`   #leftover=`$PWD|sed -e "s!$HOME!~!"` # for bash
+  leftover=$(print -P "%~")   #leftover=$($PWD|sed -e "s!$HOME!~!") # for bash
 
   #echo "$stub | $leftover"
 
-  if [ `expr index "$leftover" "~"` -eq 1 ]; then
+  if [ $(expr index "$leftover" "~") -eq 1 ]; then
     # echo "true"
     stub="~"
-    leftover=`echo $leftover | sed -re 's!^~(.*)$!\1!'`
+    leftover=$(echo $leftover | sed -re 's!^~(.*)$!\1!')
   fi
 
   #echo "$stub | $leftover"
-  if [ `echo "$leftover" | sed -re 's![^/]!!g' | wc -c` -gt 2 ]; then
-    stub=$stub`echo $leftover|sed -re "s!([^/]{1,$ABBREV_LENGTH})[^/]*/.*!\1!"`
-    leftover=`echo $leftover|sed -re "s![^/]+/(.*)!\1!"`
+  if [ $(echo "$leftover" | sed -re 's![^/]!!g' | wc -c) -gt 2 ]; then
+    stub=$stub$(echo $leftover|sed -re "s!([^/]{1,$ABBREV_LENGTH})[^/]*/.*!\1!")
+    leftover=$(echo $leftover|sed -re "s![^/]+/(.*)!\1!")
     #echo "$stub | $leftover"
   fi
   echo -n "%F{${ZSH_PROMPT_PWD_COLOR:-"blue"}}$stub$leftover%f"
@@ -149,7 +149,7 @@ prompt_pure_setup() {
 	autoload -Uz vcs_info
 
 	add-zsh-hook precmd prompt_pure_precmd
-	add-zsh-hook preexec prompt_pure_preexec
+	add-zsh-hook preexec preexec_hook
 
 	zstyle ':vcs_info:*' enable git
 	zstyle ':vcs_info:git*' formats ' %b'
@@ -183,8 +183,9 @@ prompt_pure_precmd() {
   unset cmd_timestamp
 }
 
-prompt_pure_preexec() {
-	# shows the current dir and executed command in the title when a process is active
+# show CWD and command in title
+# runs after entered command is read, before it is run
+preexec_hook() {
 	print -Pn "\e]0;"
 	echo -nE "$PWD:t: $2"
 	print -Pn "\a"
