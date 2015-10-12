@@ -13,6 +13,8 @@ Bundle 'mileszs/ack.vim'
 Bundle 'myusuf3/numbers.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'christoomey/vim-tmux-navigator'
+Plugin 'mattn/emmet-vim'
+Plugin 'vim-scripts/closetag.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -52,7 +54,7 @@ set softtabstop=2
 set shiftwidth=2
 
 autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
-autocmd Filetype html setlocal tabstop=4 softtabstop=4 shiftwidth=4
+autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 
 " set t_Co=256
