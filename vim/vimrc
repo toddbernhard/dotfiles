@@ -5,15 +5,22 @@ call vundle#begin()  " set the runtime path to include Vundle and initialize
 Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle, required
 " All Plugins
 
-Bundle 'scrooloose/nerdtree'
-Bundle 'groenewege/vim-less'
-Plugin 'kchmck/vim-coffee-script'
+" Scala
 Bundle 'derekwyatt/vim-scala'
-Bundle 'mileszs/ack.vim'
-Bundle 'myusuf3/numbers.vim'
+" Purescipt
+Bundle 'raichoo/purescript-vim'
+" CoffeeScript
+Plugin 'kchmck/vim-coffee-script'
+" Less
+Bundle 'groenewege/vim-less'
+
+" Ctrl-P -- search by filename
 Bundle 'kien/ctrlp.vim'
-Bundle 'christoomey/vim-tmux-navigator'
-Plugin 'mattn/emmet-vim'
+" Ack -- grep -R, optimized
+Bundle 'mileszs/ack.vim'
+" toggles btwn relative and absolute line numbering
+Bundle 'myusuf3/numbers.vim'
+" automatically close open html/xml tags with ctrl+_
 Plugin 'vim-scripts/closetag.vim'
 
 " All of your Plugins must be added before the following line

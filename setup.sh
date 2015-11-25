@@ -71,13 +71,7 @@ inner_git () {
     echo ""
     echo "Using git user.name=$set_username"
     echo "Using git user.email=$set_email"
-    echo ""
   fi
-  
-  echo ""
-  echo "[MANUAL STEPS]"
-  echo "    see README.md"
-  echo ""
 }
 
 
@@ -139,9 +133,11 @@ inner_zsh () {
   if [ -e "$zshrc" ]; then
     if ! grep -q "/all.zsh" "$zshrc"; then
       echo "source $DIR/zsh/all.zsh" >> "$zshrc"
+    else
+      echo "all.zsh already sourced"
     fi
   else
-    echo "no .zshrc"
+    echo "source $DIR/zsh/all.zsh" >> "$zshrc"
   fi
 }
 
