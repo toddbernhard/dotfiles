@@ -20,7 +20,7 @@
 # %(?..) => prompt conditional - %(condition.true.false)
 
 setopt PROMPT_SUBST   # in prompt, do param and arithm expansion, and command subst
-export ZLE_RPROMPT_INDENT=0  # no right margin
+export ZLE_RPROMPT_INDENT=1  # unfortunately, 0 seems to screw up my left prompt (?!)
 
 host() {
   echo -n "%F{${ZSH_PROMPT_HOST_COLOR:-"green"}}${PROMPT_HOST:-"%m"}%f"
@@ -36,7 +36,6 @@ abbrev_pwd() {
   #echo "$stub | $leftover"
 
   if [ $(expr index "$leftover" "~") -eq 1 ]; then
-    # echo "true"
     stub="~"
     leftover=$(echo $leftover | sed -re 's!^~(.*)$!\1!')
   fi
@@ -51,10 +50,11 @@ abbrev_pwd() {
 }
 
 exit_code() {
+  # http://stackoverflow.com/questions/4466245/customize-zshs-prompt-when-displaying-previous-command-exit-code
   echo -n "%(?..%F{red}%?%f )"
 }
 
-git_dirty() {
+git_dirty_count() {
   dirty_count=$(git status --porcelain 2>/dev/null | wc -l)
 
   echo -n "%F{magenta}"
@@ -72,10 +72,7 @@ git_dirty() {
 touch_lock_path=".zsh-checking-upstream"
 diff_path=".zsh-upstream-diff"
 
-# fetches and updates upstream-diff' with "downup", "down", "up"
-git_check_upstream() {
-
-  upstream_diff() {
+create_upstream_diff() {
     command git fetch &>/dev/null &&   # check if there is anything to pull
     command git rev-parse --abbrev-ref @'{u}' &>/dev/null &&   # check if there is an upstream configured for this branch
     {
@@ -92,10 +89,13 @@ git_check_upstream() {
     }
   }
 
+# fetches and updates upstream-diff' with "downup", "down", "up"
+git_check_upstream() {
+  if [ "$ZSH_PROMPT_ENABLE_UPSTREAM" ]; then
+
   # check if we're in a git repo
   git_path=$(git rev-parse --git-dir 2> /dev/null)
   if [ $? = 0 ]; then
-  if [ "$ZSH_PROMPT_ENABLE_UPSTREAM" ]; then
     git_path=${git_path%.git}
 
     # prevents parallel runs
@@ -103,19 +103,20 @@ git_check_upstream() {
     if [ ! -e $touch_lock ]; then
       touch "$touch_lock"
 
-      local diff=$(upstream_diff)
-      echo $diff > $diff_path
+      local diff=$(create_upstream_diff)
+      echo $diff > "$git_path$diff_path"
 
       rm "$touch_lock"
     fi
   fi
+
   fi
 }
 
 # reads 'upstream-diff' and prints arrows
 git_print_upstream() {
-
   if [ "$ZSH_PROMPT_ENABLE_UPSTREAM" ]; then
+
     # check if we're in a git repo
     git_path=$(git rev-parse --git-dir 2> /dev/null)
     if [  $? = 0 ]; then
@@ -135,6 +136,7 @@ git_print_upstream() {
 
       fi
     fi
+
   fi
 }
 
@@ -148,30 +150,30 @@ prompt_pure_setup() {
   autoload -Uz add-zsh-hook
   autoload -Uz vcs_info
 
-  add-zsh-hook precmd prompt_pure_precmd
+  add-zsh-hook precmd precmd_hook
   add-zsh-hook preexec preexec_hook
 
   zstyle ':vcs_info:*' enable git
-  zstyle ':vcs_info:git*' formats ' %b'
-  zstyle ':vcs_info:git*' actionformats ' %b|%a'
+  zstyle ':vcs_info:git*' formats '%b'
+  zstyle ':vcs_info:git*' actionformats '%b|%a'
 
   PROMPT='$(left_prompt)'
   RPROMPT='$(right_prompt)'
 }
 
 left_prompt() {
-  echo -n "\n▏$(host) $(abbrev_pwd) $(exit_code)⤜  "  # ᚛"
+  echo -n "\n▏$(host) $(abbrev_pwd) $(exit_code)⤜ "  # ᚛"
 }
 
 right_prompt() {
-  echo -n "$(git_dirty)$(git_print_upstream)$vcs_info_msg_0_"
+  echo -n "$(git_dirty_count)$(git_print_upstream)$vcs_info_msg_0_"
 }
 
-prompt_pure_precmd() {
+precmd_hook() {
   # shows the full path in the title
-  print -Pn '\e]0;%~\a'
+  print -Pn "\e]0;%~\a"
 
-  # git info
+  # git info, refresh vcs_info cmds
   vcs_info
 
   # in a background subshell, updates a "diff" file for
@@ -183,12 +185,10 @@ prompt_pure_precmd() {
   unset cmd_timestamp
 }
 
-# show CWD and command in title
+# show CWD in title
 # runs after entered command is read, before it is run
 preexec_hook() {
-  print -Pn "\e]0;"
-  echo -nE "$PWD:t: $2"
-  print -Pn "\a"
+  print -Pn "\e]0;%~ | $2\a"
 }
 
 prompt_pure_setup "$@"
