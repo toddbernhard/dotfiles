@@ -19,7 +19,7 @@
 # %m => shortname host
 # %(?..) => prompt conditional - %(condition.true.false)
 
-setopt PROMPT_SUBST
+setopt PROMPT_SUBST   # in prompt, do param and arithm expansion, and command subst
 export ZLE_RPROMPT_INDENT=0  # no right margin
 
 host() {
@@ -95,7 +95,7 @@ git_check_upstream() {
   # check if we're in a git repo
   git_path=$(git rev-parse --git-dir 2> /dev/null)
   if [ $? = 0 ]; then
-  if [ -z "$ZSH_PROMPT_DISABLE_UPSTREAM" ]; then
+  if [ "$ZSH_PROMPT_ENABLE_UPSTREAM" ]; then
     git_path=${git_path%.git}
 
     # prevents parallel runs
@@ -115,7 +115,7 @@ git_check_upstream() {
 # reads 'upstream-diff' and prints arrows
 git_print_upstream() {
 
-  if [ -z "$ZSH_PROMPT_DISABLE_UPSTREAM" ]; then
+  if [ "$ZSH_PROMPT_ENABLE_UPSTREAM" ]; then
     # check if we're in a git repo
     git_path=$(git rev-parse --git-dir 2> /dev/null)
     if [  $? = 0 ]; then
@@ -175,7 +175,7 @@ prompt_pure_precmd() {
   vcs_info
 
   # in a background subshell, updates a "diff" file for
-  if [ -z "$ZSH_PROMPT_DISABLE_UPSTREAM" ]; then
+  if [ "$ZSH_PROMPT_ENABLE_UPSTREAM" ]; then
     (git_check_upstream &)
   fi
 
