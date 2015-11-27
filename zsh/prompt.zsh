@@ -97,16 +97,16 @@ git_check_upstream() {
   if [ $? = 0 ]; then
   if [ -z "$ZSH_PROMPT_DISABLE_UPSTREAM" ]; then
     git_path=${git_path%.git}
-    
-    # prevents parallel runs      
+
+    # prevents parallel runs
     touch_lock="$git_path$touch_lock_path"
     if [ ! -e $touch_lock ]; then
-       touch "$touch_lock"
+      touch "$touch_lock"
 
-       local diff=$(upstream_diff)
-       echo $diff > $diff_path
- 
-       rm "$touch_lock"
+      local diff=$(upstream_diff)
+      echo $diff > $diff_path
+
+      rm "$touch_lock"
     fi
   fi
   fi
@@ -114,7 +114,7 @@ git_check_upstream() {
 
 # reads 'upstream-diff' and prints arrows
 git_print_upstream() {
-  
+
   if [ -z "$ZSH_PROMPT_DISABLE_UPSTREAM" ]; then
     # check if we're in a git repo
     git_path=$(git rev-parse --git-dir 2> /dev/null)
@@ -139,21 +139,21 @@ git_print_upstream() {
 }
 
 prompt_pure_setup() {
-	# prevent percentage showing up
-	# if output doesn't end with a newline
-	export PROMPT_EOL_MARK=''
+  # prevent percentage showing up
+  # if output doesn't end with a newline
+  export PROMPT_EOL_MARK=''
 
-	#prompt_opts=(cr subst percent)
+  #prompt_opts=(cr subst percent)
 
-	autoload -Uz add-zsh-hook
-	autoload -Uz vcs_info
+  autoload -Uz add-zsh-hook
+  autoload -Uz vcs_info
 
-	add-zsh-hook precmd prompt_pure_precmd
-	add-zsh-hook preexec preexec_hook
+  add-zsh-hook precmd prompt_pure_precmd
+  add-zsh-hook preexec preexec_hook
 
-	zstyle ':vcs_info:*' enable git
-	zstyle ':vcs_info:git*' formats ' %b'
-	zstyle ':vcs_info:git*' actionformats ' %b|%a'
+  zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:git*' formats ' %b'
+  zstyle ':vcs_info:git*' actionformats ' %b|%a'
 
   PROMPT='$(left_prompt)'
   RPROMPT='$(right_prompt)'
@@ -174,11 +174,11 @@ prompt_pure_precmd() {
   # git info
   vcs_info
 
-  # in a background subshell, updates a "diff" file for 
+  # in a background subshell, updates a "diff" file for
   if [ -z "$ZSH_PROMPT_DISABLE_UPSTREAM" ]; then
     (git_check_upstream &)
   fi
- 
+
   #reset value since `preexec` isn't always triggered
   unset cmd_timestamp
 }
@@ -186,9 +186,9 @@ prompt_pure_precmd() {
 # show CWD and command in title
 # runs after entered command is read, before it is run
 preexec_hook() {
-	print -Pn "\e]0;"
-	echo -nE "$PWD:t: $2"
-	print -Pn "\a"
+  print -Pn "\e]0;"
+  echo -nE "$PWD:t: $2"
+  print -Pn "\a"
 }
 
 prompt_pure_setup "$@"
