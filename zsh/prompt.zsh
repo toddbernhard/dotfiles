@@ -79,10 +79,10 @@ create_upstream_diff() {
       local down_commits=$(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null)
       local up_commits=$(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null)
       local diff=''
-      if [[ $down -gt 0 ]]; then
+      if [[ $down_commits -gt 0 ]]; then
         diff+='down'
       fi
-      if [[ $up -gt 0 ]]; then
+      if [[ $up_commits -gt 0 ]]; then
         diff+='up'
       fi
       echo -n $diff
