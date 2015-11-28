@@ -54,15 +54,30 @@ exit_code() {
   echo -n "%(?..%F{red}%?%f )"
 }
 
+command_pointer=$(echo -n "%F{cyan}ⅵ%f")
+insert_pointer="⤜"  # ᚛
+current_pointer="$insert_pointer"
+
+vi_mode_toggle() {
+  if [ "$KEYMAP" = "vicmd" ]; then
+    current_pointer="$command_pointer"
+  else
+    current_pointer="$insert_pointer"
+  fi
+
+  zle reset-prompt
+}
+
+pointer() {
+  echo -n "$current_pointer"
+}
+
 git_dirty_count() {
   dirty_count=$(git status --porcelain 2>/dev/null | wc -l)
 
   echo -n "%F{magenta}"
-	if [ "$dirty_count" -gt 5 ]; then
-    echo -n "$dirty_count "
-  elif [ "$dirty_count" -gt 0 ]; then
-    echo -n ". "
-  fi
+  if   [ "$dirty_count" -gt 5 ]; then; echo -n "$dirty_count "
+  elif [ "$dirty_count" -gt 0 ]; then; echo -n ". "; fi
   echo -n "%f"
 }
 
@@ -73,21 +88,15 @@ touch_lock_path=".zsh-checking-upstream"
 diff_path=".zsh-upstream-diff"
 
 create_upstream_diff() {
-    command git fetch &>/dev/null &&   # check if there is anything to pull
-    command git rev-parse --abbrev-ref @'{u}' &>/dev/null &&   # check if there is an upstream configured for this branch
-    {
-      local down_commits=$(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null)
-      local up_commits=$(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null)
-      local diff=''
-      if [[ $down_commits -gt 0 ]]; then
-        diff+='down'
-      fi
-      if [[ $up_commits -gt 0 ]]; then
-        diff+='up'
-      fi
-      echo -n $diff
-    }
+  command git fetch &>/dev/null &&   # check if there is anything to pull
+  command git rev-parse --abbrev-ref @'{u}' &>/dev/null &&   # check if there is an upstream configured for this branch
+  {
+    local down_commits=$(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null)
+    local up_commits=$(command git rev-list --left-only --count HEAD...@'{u}' 2>/dev/null)
+    if [[ $down_commits -gt 0 ]]; then; echo -n 'down'; fi
+    if [[ $up_commits -gt 0   ]]; then; echo -n 'up'  ; fi
   }
+}
 
 # fetches and updates upstream-diff' with "downup", "down", "up"
 git_check_upstream() {
@@ -140,29 +149,8 @@ git_print_upstream() {
   fi
 }
 
-prompt_pure_setup() {
-  # prevent percentage showing up
-  # if output doesn't end with a newline
-  export PROMPT_EOL_MARK=''
-
-  #prompt_opts=(cr subst percent)
-
-  autoload -Uz add-zsh-hook
-  autoload -Uz vcs_info
-
-  add-zsh-hook precmd precmd_hook
-  add-zsh-hook preexec preexec_hook
-
-  zstyle ':vcs_info:*' enable git
-  zstyle ':vcs_info:git*' formats '%b'
-  zstyle ':vcs_info:git*' actionformats '%b|%a'
-
-  PROMPT='$(left_prompt)'
-  RPROMPT='$(right_prompt)'
-}
-
 left_prompt() {
-  echo -n "\n▏$(host) $(abbrev_pwd) $(exit_code)⤜ "  # ᚛"
+  echo -n "\n▏$(host) $(abbrev_pwd) $(exit_code)$(pointer) "
 }
 
 right_prompt() {
@@ -191,4 +179,27 @@ preexec_hook() {
   print -Pn "\e]0;%~ | $2\a"
 }
 
-prompt_pure_setup "$@"
+
+# Initialization
+
+# prevent percentage showing up if output doesn't end with a newline
+export PROMPT_EOL_MARK=''
+
+#prompt_opts=(cr subst percent)
+
+autoload -Uz add-zsh-hook
+autoload -Uz vcs_info
+
+add-zsh-hook precmd precmd_hook
+add-zsh-hook preexec preexec_hook
+
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*' formats '%b'
+zstyle ':vcs_info:git*' actionformats '%b|%a'
+
+zle -N zle-keymap-select vi_mode_toggle
+zle -N zle-line-init vi_mode_toggle
+KEYTIMEOUT=1  # reduces delay to enter insert mode
+
+PROMPT='$(left_prompt)'
+RPROMPT='$(right_prompt)'

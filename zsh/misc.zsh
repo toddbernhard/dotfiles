@@ -22,3 +22,5 @@ export PATH="$HOME"/bin:/sbin:/usr/sbin:"$PATH"
 export ACK_COLOR_MATCH="bold cyan"
 export ACK_COLOR_LINENO="yellow"
 export ACK_COLOR_FILENAME="blue"
+
+bindkey -v
