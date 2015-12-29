@@ -34,18 +34,17 @@ abbrev_pwd() {
   leftover=$(print -P "%~")   #leftover=$($PWD|sed -e "s!$HOME!~!") # for bash
 
   #echo "$stub | $leftover"
-
   if [ $(expr index "$leftover" "~") -eq 1 ]; then
     stub="~"
     leftover=$(echo $leftover | sed -re 's!^~(.*)$!\1!')
   fi
 
   #echo "$stub | $leftover"
-  if [ $(echo "$leftover" | sed -re 's![^/]!!g' | wc -c) -gt 2 ]; then
+  while [ $(echo "$leftover" | sed -re 's![^/]!!g' | wc -c) -gt 2 ]; do
     stub=$stub$(echo $leftover|sed -re "s!([^/]{1,$ABBREV_LENGTH})[^/]*/.*!\1!")
     leftover=$(echo $leftover|sed -re "s![^/]+/(.*)!\1!")
     #echo "$stub | $leftover"
-  fi
+  done
   echo -n "%F{${ZSH_PROMPT_PWD_COLOR:-"blue"}}$stub$leftover%f"
 }
 

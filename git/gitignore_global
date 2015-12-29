@@ -24,3 +24,4 @@ Thumbs.db
 
 .zsh-checking*
 .zsh-upstream*
+target/

@@ -12,6 +12,7 @@ setopt autocd  # allows you to skip the cd command
 setopt extendedglob  # enables things like "cp ^*.(tar|bz2|gz)"
 setopt dotglob  # show hidden files in tab completion
 unsetopt beep  # no beep?
+unsetopt auto_cd
 
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 export SHELL=/bin/zsh
