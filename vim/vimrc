@@ -73,7 +73,7 @@ hi Search ctermbg=236
 highlight LineNr ctermfg=237
 highlight CursorLineNr ctermfg=245
 
-set wildignore+=*/target/*,*.swo,*.swp,*/dist/*,*/node_modules/*
+set wildignore+=*/target/*,*.swo,*.swp,*/dist/*,*/node_modules/*,*/lib/*
 
 " Map w!! to write file with sudo, when forgot to open with sudo.
 cmap w!! w !sudo tee % >/dev/null
