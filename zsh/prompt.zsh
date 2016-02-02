@@ -57,13 +57,16 @@ command_pointer=$(echo -n "%F{cyan}ⅵ%f")
 insert_pointer="⤜"  # ᚛
 current_pointer="$insert_pointer"
 
-vi_mode_toggle() {
+update_pointer() {
+  # for vim indicator
   if [ "$KEYMAP" = "vicmd" ]; then
     current_pointer="$command_pointer"
   else
     current_pointer="$insert_pointer"
   fi
+}
 
+vim_mode_toggled() {
   zle reset-prompt
 }
 
@@ -149,6 +152,7 @@ git_print_upstream() {
 }
 
 left_prompt() {
+  update_pointer
   echo -n "\n▏$(host) $(abbrev_pwd) $(exit_code)$(pointer) "
 }
 
@@ -196,9 +200,9 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats '%b'
 zstyle ':vcs_info:git*' actionformats '%b|%a'
 
-zle -N zle-keymap-select vi_mode_toggle
-zle -N zle-line-init vi_mode_toggle
-KEYTIMEOUT=1  # reduces delay to enter insert mode
+zle -N zle-keymap-select vim_mode_toggled
+#zle -N zle-line-init vim_mode_toggled
+KEYTIMEOUT=1  # 10ms delay to enter insert mode
 
 PROMPT='$(left_prompt)'
 RPROMPT='$(right_prompt)'
