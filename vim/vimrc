@@ -13,6 +13,8 @@ Bundle 'raichoo/purescript-vim'
 Plugin 'kchmck/vim-coffee-script'
 " Less
 Bundle 'groenewege/vim-less'
+" Javascript (better syntax)
+Plugin 'pangloss/vim-javascript'
 
 " Ctrl-P -- search by filename
 Bundle 'kien/ctrlp.vim'
@@ -127,3 +129,5 @@ let g:ack_autoclose = 1
 noremap + :LAck "\W<cword>\W"<CR>
 noremap - :lnext<CR>
 noremap _ :lprevious<CR>
+
+colorscheme Tomorrow-Night
