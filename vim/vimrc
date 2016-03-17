@@ -121,9 +121,11 @@ let g:ctrlp_prompt_mappings = {
 
 
 " Ack.vim settings
-" let g:ack_default_options = " -s -H --nocolor --nogroup --column --smart-case"
+if executable('ag')    " use ag if installed
+  let g:ackprg = 'ag --vimgrep'
+endif
+
 let g:ack_autoclose = 1
-" let g:ackpreview = 1
 
 " Ack convenience
 noremap + :LAck "\W<cword>\W"<CR>
