@@ -43,7 +43,7 @@ inner_git () {
 
   symlink "$DIR/git/gitconfig" "$HOME/.gitconfig"
   symlink "$DIR/git/gitignore_global" "$HOME/.gitignore_global"
-  
+
   # Setup local user info
   gitlocal="$HOME/.gitconfig.local"
   if [ ! -e "$gitlocal" ]; then
@@ -58,12 +58,12 @@ inner_git () {
     if ! grep -q "name" "$gitlocal"; then
       echo -ne "\nEnter username for git commits: "
       read username
-      "$git_program" config --file "$gitlocal" --add "user.name" "$username"    
+      "$git_program" config --file "$gitlocal" --add "user.name" "$username"
     fi
     if ! grep -q "email" "$gitlocal"; then
       echo -ne "\nEnter email for git commits: "
       read email
-      "$git_program" config --file "$gitlocal" --add "user.email" "$email"    
+      "$git_program" config --file "$gitlocal" --add "user.email" "$email"
     fi
 
     set_username=`"$git_program" config "user.name"`
@@ -97,12 +97,14 @@ inner_vim () {
   make_dir "$vimdir/bundle"
   make_dir "$vimdir/swp"
   make_dir "$vimdir/undo"
+  make_dir "$vimdir/colors"
 
   # Install Vundle
   program_on_path "git" setup_vundle
 
   # Vimrc
   symlink "$DIR/vim/vimrc" "$HOME/.vimrc"
+  symlink "$DIR/vim/tomorrow-theme/tomorrow-night.vim" "$vimdir/colors/tomorrow-night.vim"
 }
 setup_vundle () {
   target="$HOME/.vim/bundle/Vundle.vim"
@@ -160,7 +162,7 @@ wip () {
 }
 
 
-#####  Util  ##### 
+#####  Util  #####
 
 make_dir () {
   if [ ! -d "$1" ]; then
@@ -246,7 +248,7 @@ EOF
   PS3=$prompt
   options=("setup all" "setup one" "show all" "< quit <")
 
-  select opt in "${options[@]}"; do 
+  select opt in "${options[@]}"; do
 
     case "$REPLY" in
 
@@ -262,7 +264,7 @@ EOF
     PS3=$prompt
 
   done
-  
+
   exit 0
 }
 

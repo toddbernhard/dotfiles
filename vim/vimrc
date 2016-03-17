@@ -130,4 +130,4 @@ noremap + :LAck "\W<cword>\W"<CR>
 noremap - :lnext<CR>
 noremap _ :lprevious<CR>
 
-colorscheme Tomorrow-Night
+colorscheme tomorrow-night
