@@ -77,13 +77,62 @@ highlight CursorLineNr ctermfg=245
 
 set wildignore+=*/target/*,*.swo,*.swp,*/dist/*,*/node_modules/*,*/lib/*
 
+" == Bindings ==
+" In visual and normal modes, map T => J => N => K => L => T
+" t = til
+" T = prev. til
+" j = move down
+" J = join lines
+" n = next search
+" N = prev. search
+" k = move up
+" K = open manpage
+" l = move right
+" L = move to bottom of window
+nnoremap t j
+nnoremap T J
+vnoremap t j
+vnoremap T J
+
+nnoremap n k
+nnoremap N K
+vnoremap n k
+vnoremap N K
+
+nnoremap s l
+nnoremap S L
+vnoremap s l
+vnoremap S L
+
+nnoremap k s
+nnoremap K S
+vnoremap k s
+vnoremap K S
+
+nnoremap j n
+nnoremap J N
+vnoremap j n
+vnoremap J N
+
+nnoremap l t
+nnoremap L T
+vnoremap l l
+vnoremap L T
+
+" In normal mode, single semi-colon <;> maps to full on colon <:>
+nnoremap ; :
+
+" In all modes, map double semi-colon <;;> maps back to semi-colon <;>
+noremap ;; ;
+
+" Map command <qj> to <wq>
+cnoreabbrev <expr> qj ((getcmdtype() is# ':' && getcmdline() is# 'qj')?('wq'):('qj'))
+
 " Map w!! to write file with sudo, when forgot to open with sudo.
 cmap w!! w !sudo tee % >/dev/null
 
 " Makes the cursor stay in place as you leave insert mode
 autocmd InsertLeave * :normal `^
-" XXX Attempt below breaks arrow keys in insert mode in some envs/contexts!!!
-" inoremap <Esc> <Esc>l
 
 " In normal mode, map <tab>,<shift+tab> to next,prev tab
 nnoremap <C-I> :tabn<CR>
@@ -102,11 +151,6 @@ nnoremap ' :CtrlP<CR>
 " In normal mode, map <ctrl+/> to toggle search highlightling
 nnoremap <C-l> :set hlsearch!<CR>
 
-" Single semi-colon <;> maps to full on colon <:>
-nnoremap ;  :
-
-" Double semi-colon <;;> maps to Save
-nnoremap ;; :w<CR>
 
 " set omnifunc=syntaxcomplete
 

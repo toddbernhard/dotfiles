@@ -4,6 +4,9 @@ alias la="ls -al"
 alias rn="ls" # typo
 alias /-="ls" # typo
 
+alias dorker="docker" # typo
+alias dokcer="docker" # typo
+
 alias dud="du -h -c -d "  # disk usage depth
 alias df="df -h"
 
@@ -15,3 +18,7 @@ alias mux="mux2.0"  # tmuxinator
 
 alias tree-src="tree -I \"node_modules|lib\""
 alias source-zsh="source ~/.zshrc"
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
