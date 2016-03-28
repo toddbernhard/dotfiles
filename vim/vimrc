@@ -166,7 +166,7 @@ let g:ctrlp_prompt_mappings = {
 
 " Ack.vim settings
 if executable('ag')    " use ag if installed
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
 
 let g:ack_autoclose = 1
