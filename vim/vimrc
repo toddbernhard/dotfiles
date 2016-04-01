@@ -65,7 +65,6 @@ set shiftwidth=2
 autocmd Filetype python setlocal tabstop=4 softtabstop=4 shiftwidth=4
 autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
-
 " set t_Co=256
 set background=dark
 hi Search ctermfg=152
@@ -75,7 +74,7 @@ hi Search ctermbg=236
 highlight LineNr ctermfg=237
 highlight CursorLineNr ctermfg=245
 
-set wildignore+=*/target/*,*.swo,*.swp,*/dist/*,*/node_modules/*,*/lib/*
+set wildignore+=*/target/*,*.swo,*.swp,*/dist/*,*/node_modules/*,*/lib/*,*/export/*
 
 " == Bindings ==
 " In visual and normal modes, map T => J => N => K => L => T

@@ -4,6 +4,15 @@
 
 #### Additional manual setup
 
+###### keymap
+- set to dvorak
+- bind capslock to escape
+  - http://askubuntu.com/questions/363346/how-to-permanently-switch-caps-lock-and-esc
+  - https://bbs.archlinux.org/viewtopic.php?id=100007
+
+###### zsh
+- change login shell in `/etc/passwd`
+
 ###### ssh client
 - setup client RSA keys (often github, home, office)
 - add common destinations to `~/.ssh/config` (see [Arch wiki](https://wiki.archlinux.org/index.php/Secure_Shell#Saving_connection_data_in_ssh_config))
@@ -16,9 +25,6 @@
 - `sshd_config` edits:
   - `AllowGroups ssh`
   - `PasswordAuthentication no`
-
-###### zsh
-- change login shell in `/etc/passwd`
 
 ###### ag
 - install ag -- the [silver searcher](https://github.com/ggreer/the_silver_searcher)
