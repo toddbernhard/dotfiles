@@ -6,12 +6,14 @@
   cm = !git a && git commit -m
   co = checkout
   d = !git a && git diff --cached
+  pm = !git co master && git pull --ff-only
   s = status --short
 
+  delete-branch = branch -D
   del = push --delete
   dif = diff --cached
   amend = !git a && git commit --amend --no-edit
-  ammend = !git a && git commit --amend --no-edit
+  ammend = !git amend
   new = checkout -b
 
   recent = !git log --pretty=format:'%Cgreen%ad %C(red)%h%Creset - %s' --date=short --reverse --all --since=2.months.ago --author=todd

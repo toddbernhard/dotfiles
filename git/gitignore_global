@@ -25,3 +25,4 @@ Thumbs.db
 .zsh-checking*
 .zsh-upstream*
 target/
+node_modules/
