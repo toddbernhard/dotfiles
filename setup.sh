@@ -99,12 +99,15 @@ inner_vim () {
   make_dir "$vimdir/undo"
   make_dir "$vimdir/colors"
 
-  # Install Vundle
-  program_on_path "git" setup_vundle
-
   # Vimrc
   symlink "$DIR/vim/vimrc" "$HOME/.vimrc"
+
+  # Color schemes
   symlink "$DIR/vim/tomorrow-theme/tomorrow-night.vim" "$vimdir/colors/tomorrow-night.vim"
+  symlink "$DIR/vim/badwolf-theme/badwolf.vim" "$vimdir/colors/badwolf.vim"
+
+  # Install Vundle
+  program_on_path "git" setup_vundle
 }
 setup_vundle () {
   target="$HOME/.vim/bundle/Vundle.vim"
@@ -187,7 +190,7 @@ program_on_path () {
   if type -P "$1" > /dev/null; then
     "$2"
   else
-    echo "$1 not found on path. Skipping setup"
+    echo "$1 not found on path. Skipping setup of $1"
   fi
 }
 

@@ -30,5 +30,7 @@
 - install ag -- the [silver searcher](https://github.com/ggreer/the_silver_searcher)
 
 ## License & Credits
-The vim color scheme Tomorrow Night is from Chris Kempson's [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme), under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/tomorrow-theme/LICENSE.md). It is bundled for easy installation.
-The rest is a mismatch of pilfered dotfiles from around net. It is [Unlicensed](https://github.com/toddbernhard/dotfiles/blob/master/UNLICENSE.txt) and part of the public domain.
+Most of this is lifted from tutorials, tips, and dotfiles from around the net. A few 3rd-party artifacts are bundled here for easy installation:
+- Tomorrow Night, the vim color scheme from Chris Kempson's [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/tomorrow-theme/LICENSE.md).
+- Badwolf, the vim color scheme from [Steve Losh](http://stevelosh.com/projects/badwolf). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/badwolf-theme/LICENSE.md).
+The rest is [Unlicensed](https://github.com/toddbernhard/dotfiles/blob/master/UNLICENSE.txt).
