@@ -2,23 +2,28 @@
   a = add -A .
   b = branch
   c = !git a && git commit
-  ca = !git a && git commit --amend --no-edit
+  ca = !git amend
   cm = !git a && git commit -m
   co = checkout
   d = !git a && git diff --cached
-  pm = !git co master && git pull --ff-only && git co -
+  pm = !git pull-master
   s = status --short
   stl = stash list
   stp = stash -p
 
-  amend = !git ca
-  ammend = !git ca
-  delete-local = branch -D
-  delele-remote = push --delete
+  amend = !git a && git commit --amend --no-edit
+  ammend = !git amend
+  branch-date = branch-date
+  del-local = branch -D
+  del-remote = push --delete
   new = !git co -b
-  pull-master = !git pm
+  pull-master = !git co master && git pull --ff-only && git co -
+  reset-file = checkout HEAD --
 
-  recent = !git log --pretty=format:'%Cgreen%ad %C(red)%h%Creset - %s' --date=short --reverse --all --since=2.months.ago --author=todd
+  # Recent commits by you, useful for time-tracking
+  recent = !git log --pretty=format:'%Cgreen%ad %C(red)%h%Creset - %s' --date=short --reverse --all --since=2.months.ago --author="$(git config user.name)"
+
+
   tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
 [branch]
