@@ -6,6 +6,8 @@
 *.exe
 *.o
 *.so
+target/
+node_modules/
 
 # OS geterated files #
 ######################
@@ -22,7 +24,7 @@ Thumbs.db
 *.swp
 *.swo
 
+# Zsh Git indicator #
+# ###################
 .zsh-checking*
 .zsh-upstream*
-target/
-node_modules/

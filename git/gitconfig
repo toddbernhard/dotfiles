@@ -2,19 +2,21 @@
   a = add -A .
   b = branch
   c = !git a && git commit
-  ca = !git a && git commit --amend
+  ca = !git a && git commit --amend --no-edit
   cm = !git a && git commit -m
   co = checkout
   d = !git a && git diff --cached
-  pm = !git co master && git pull --ff-only
+  pm = !git co master && git pull --ff-only && git co -
   s = status --short
+  stl = stash list
+  stp = stash -p
 
-  delete-branch = branch -D
-  del = push --delete
-  dif = diff --cached
-  amend = !git a && git commit --amend --no-edit
-  ammend = !git amend
-  new = checkout -b
+  amend = !git ca
+  ammend = !git ca
+  delete-local = branch -D
+  delele-remote = push --delete
+  new = !git co -b
+  pull-master = !git pm
 
   recent = !git log --pretty=format:'%Cgreen%ad %C(red)%h%Creset - %s' --date=short --reverse --all --since=2.months.ago --author=todd
   tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
