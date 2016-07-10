@@ -31,6 +31,8 @@
 
 ## License & Credits
 Most of this is lifted from tutorials, tips, and dotfiles from around the net. A few 3rd-party artifacts are bundled here for easy installation:
+
 - Tomorrow Night, the vim color scheme from Chris Kempson's [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/tomorrow-theme/LICENSE.md).
 - Badwolf, the vim color scheme from [Steve Losh](http://stevelosh.com/projects/badwolf). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/badwolf-theme/LICENSE.md).
+
 The rest is [Unlicensed](https://github.com/toddbernhard/dotfiles/blob/master/UNLICENSE.txt).
