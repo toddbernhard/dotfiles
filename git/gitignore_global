@@ -24,7 +24,8 @@ Thumbs.db
 *.swp
 *.swo
 
-# Zsh Git indicator #
+# Custom Zsh stuff #
 # ###################
 .zsh-checking*
 .zsh-upstream*
+.zsh-local

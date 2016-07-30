@@ -19,7 +19,7 @@
 # %m => shortname host
 # %(?..) => prompt conditional - %(condition.true.false)
 
-setopt PROMPT_SUBST   # in prompt, do param and arithm expansion, and command subst
+setopt PROMPT_SUBST   # in prompt, do parameter and arithmetic expansion, and command substition
 export ZLE_RPROMPT_INDENT=1  # unfortunately, 0 seems to screw up my left prompt (?!)
 
 host() {
@@ -104,23 +104,22 @@ create_upstream_diff() {
 git_check_upstream() {
   if [ "$ZSH_PROMPT_ENABLE_UPSTREAM" ]; then
 
-  # check if we're in a git repo
-  git_path=$(git rev-parse --git-dir 2> /dev/null)
-  if [ $? = 0 ]; then
-    git_path=${git_path%.git}
+    # check if we're in a git repo
+    git_path=$(git rev-parse --git-dir 2> /dev/null)
+    if [ $? = 0 ]; then
+      git_path=${git_path%.git}
 
-    # prevents parallel runs
-    touch_lock="$git_path$touch_lock_path"
-    if [ ! -e $touch_lock ]; then
-      touch "$touch_lock"
+      # prevents parallel runs
+      touch_lock="$git_path$touch_lock_path"
+      if [ ! -e $touch_lock ]; then
+        touch "$touch_lock"
 
-      local diff=$(create_upstream_diff)
-      echo $diff > "$git_path$diff_path"
+        local diff=$(create_upstream_diff)
+        echo $diff > "$git_path$diff_path"
 
-      rm "$touch_lock"
+        rm "$touch_lock"
+      fi
     fi
-  fi
-
   fi
 }
 
@@ -157,7 +156,11 @@ left_prompt() {
 }
 
 right_prompt() {
-  echo -n "$(git_dirty_count)$(git_print_upstream)$vcs_info_msg_0_"
+  if [ -z "$ZSH_PROMPT_DISABLE_GIT" ]; then
+    echo -n "$(git_dirty_count)$(git_print_upstream)$vcs_info_msg_0_"
+  else
+    echo -n "(no git)"
+  fi
 }
 
 precmd_hook() {
