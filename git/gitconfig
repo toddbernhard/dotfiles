@@ -41,3 +41,5 @@
 # useful for overriding [user]
 [include]
   path = ~/.gitconfig.local
+[github]
+  username = toddbernhard
