@@ -26,6 +26,8 @@ Bundle 'mileszs/ack.vim'
 Bundle 'myusuf3/numbers.vim'
 " automatically close open html/xml tags with ctrl+_
 Plugin 'vim-scripts/closetag.vim'
+" NERDtree -- folder browser within Vim
+Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,6 +71,8 @@ autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 
 " Additional FileExtension->SyntaxHighlighting mappings
 autocmd BufNewFile,BufRead *.scalas set filetype=scala
+autocmd BufNewFile,BufRead *.avsc set filetype=javascript
+autocmd BufNewFile,BufRead *.json set filetype=javascript
 
 " set t_Co=256
 set background=dark
