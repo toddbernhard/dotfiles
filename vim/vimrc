@@ -15,8 +15,8 @@ Plugin 'kchmck/vim-coffee-script'
 Bundle 'groenewege/vim-less'
 " Javascript (better syntax)
 Plugin 'pangloss/vim-javascript'
-
-Bundle 'derekelkins/agda-vim'
+" Groovy
+Plugin 'rdolgushin/groovy.vim'
 
 " Ctrl-P -- search by filename
 Bundle 'kien/ctrlp.vim'
@@ -73,6 +73,7 @@ autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.scalas set filetype=scala
 autocmd BufNewFile,BufRead *.avsc set filetype=javascript
 autocmd BufNewFile,BufRead *.json set filetype=javascript
+autocmd BufNewFile,BufRead *Jenkinsfile set filetype=groovy
 
 " set t_Co=256
 set background=dark
