@@ -17,6 +17,8 @@ Bundle 'groenewege/vim-less'
 Plugin 'pangloss/vim-javascript'
 " Groovy
 Plugin 'rdolgushin/groovy.vim'
+" SQL
+Plugin 'magicalbanana/vim-sql-syntax'
 
 " Ctrl-P -- search by filename
 Bundle 'kien/ctrlp.vim'

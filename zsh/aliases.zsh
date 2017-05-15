@@ -24,6 +24,8 @@ alias mux="mux2.0"  # tmuxinator
 alias tree-src="tree -I \"node_modules|lib|target\""
 alias source-zsh="source ~/.zshrc"
 
+# APT
+alias apt-full-upgrade="sudo apt update && sudo apt upgrade && sudo apt dist-upgrade && sudo apt autoremove"
 
 # DOCKER
 alias dorker='docker'
