@@ -136,33 +136,53 @@ zsh () {
 inner_zsh () {
   zshrc="$HOME/.zshrc"
   if [ -e "$zshrc" ]; then
+    if ! grep -q "ZSH_SRC" "$zshrc"; then
+      echo "export ZSH_SRC=$DIR/zsh" >> "$zshrc"
+    else
+      echo "ZSH_SRC already set"
+    fi
+
+    prompt_for_host_symbol
+
     if ! grep -q "/all.zsh" "$zshrc"; then
       echo "source $DIR/zsh/all.zsh" >> "$zshrc"
     else
       echo "all.zsh already sourced"
     fi
   else
+    echo "export ZSH_SRC=$DIR/zsh" >> "$zshrc"
+    prompt_for_host_symbol
     echo "source $DIR/zsh/all.zsh" >> "$zshrc"
+  fi
+}
+prompt_for_host_symbol () {
+  zshrc="$HOME/.zshrc"
+  if ! grep -q "PROMPT_HOST" "$zshrc"; then
+    echo -ne "\nEnter a host symbol (leave blank for hostname): "
+    read host_symbol
+    if [ ! -z "$host_symbol" ]; then
+      echo "export PROMPT_HOST=$host_symbol" >> "$zshrc"
+    fi
   fi
 }
 
 
-modules[wip]="wip"
-wip () {
-
-  NC='\033[0m' # No Color
-  BLACK='\033[0;30m'
-  RED='\033[0;31m'
-  GREEN='\033[0;32m'
-  ORANGE='\033[0;33m'
-  BLUE='\033[0;34m'
-  MAGENTA='\033[0;35m'
-  CYAN='\033[0;36m'
-  GRAY='\033[0;37m'
-
-  printf "| ${RED}$(hostname)${NC} Stack Overflow\n"
-  echo "| host ~/pro/dotfile >"
-}
+#modules[wip]="wip"
+#wip () {
+#
+#  NC='\033[0m' # No Color
+#  BLACK='\033[0;30m'
+#  RED='\033[0;31m'
+#  GREEN='\033[0;32m'
+#  ORANGE='\033[0;33m'
+#  BLUE='\033[0;34m'
+#  MAGENTA='\033[0;35m'
+#  CYAN='\033[0;36m'
+#  GRAY='\033[0;37m'
+#
+#  printf "| ${RED}$(hostname)${NC} Stack Overflow\n"
+#  echo "| host ~/pro/dotfile >"
+#}
 
 
 #####  Util  #####

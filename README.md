@@ -41,6 +41,13 @@ git clone git@github:toddbernhard/dotfiles.git
 
 ###### zsh
 - change login shell in `/etc/passwd`
+- change terminal emulator shell to `/bin/zsh`
+
+###### terminal
+- I recommend the Base-16 Twilight theme. Run `./terminal/base16-twilight.sh` to add it to Gnome terminal.
+
+###### fonts
+- Droid Sans, Droid Sans Mono, Droid Sans Bold are all included in [fonts/droid-sans](https://github.com/toddbernhard/dotfiles/blob/master/fonts/droid-sans).
 
 ###### ssh client
 - setup client RSA keys (often github, home, office)
@@ -65,5 +72,6 @@ Most of this is lifted from tutorials, tips, and dotfiles from around the net. A
 
 - Tomorrow Night, the vim color scheme from Chris Kempson's [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/tomorrow-theme/LICENSE.md).
 - Badwolf, the vim color scheme from [Steve Losh](http://stevelosh.com/projects/badwolf). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/badwolf-theme/LICENSE.markdown).
+- Gnome Terminal themes from the [Base-16 theme templating project](http://chriskempson.com/projects/base16/). The terminal scripts are maintained by [Aaron Williamson](https://github.com/aaron-williamson/base16-gnome-terminal) and are available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/terminal/License.txt).
 
 The rest is [Unlicensed](https://github.com/toddbernhard/dotfiles/blob/master/UNLICENSE.txt).
