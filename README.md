@@ -1,3 +1,31 @@
+Easy setup for CLI tools on a new install.
+
+---
+
+## Pre-Installation for Clean System (optional)
+
+Install `git` and `xclip`, then run
+
+```
+ssh-keygen -q -b 4096 -t rsa -f ~/.ssh/github.id_rsa -N ""
+
+cat << EOF >> ~/.ssh/config
+Host github
+  HostName github.com
+  IdentityFile ~/.ssh/github.id_rsa
+EOF
+
+xclip -selection c ~/.ssh/github.id_rsa.pub
+```
+
+Add your SSH key (copied to X's clipboard) to [your Github account](https://github.com/settings/keys). Then
+
+```
+git clone git@github:toddbernhard/dotfiles.git
+```
+
+---
+
 ## Installation
 
 [`setup.sh`](./setup.sh) will optionally configure [`git`](./git), [`irssi`](./irssi), [`tmux`](./tmux), [`vim`](./vim), [`zsh`](./zsh) and [`~/bin/`](./bin).
@@ -7,6 +35,7 @@
 ###### keymap
 - set to dvorak
 - bind capslock to escape
+  - xkeyboard-config option is `caps:escape`
   - http://askubuntu.com/questions/363346/how-to-permanently-switch-caps-lock-and-esc
   - https://bbs.archlinux.org/viewtopic.php?id=100007
 
@@ -28,6 +57,8 @@
 
 ###### ag
 - install ag -- the [silver searcher](https://github.com/ggreer/the_silver_searcher)
+
+---
 
 ## License & Credits
 Most of this is lifted from tutorials, tips, and dotfiles from around the net. A few 3rd-party artifacts are bundled here for easy installation:
