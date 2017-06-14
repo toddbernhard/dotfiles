@@ -184,6 +184,11 @@ prompt_for_host_symbol () {
 #  echo "| host ~/pro/dotfile >"
 #}
 
+modules[fonts]="symlinks ~/.fonts and rebuilds font cache"
+fonts () {
+  symlink "$DIR/fonts" ~/.fonts
+  fc-cache -s
+}
 
 #####  Util  #####
 

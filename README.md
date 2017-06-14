@@ -28,7 +28,7 @@ git clone git@github:toddbernhard/dotfiles.git
 
 ## Installation
 
-[`setup.sh`](./setup.sh) will optionally configure [`git`](./git), [`irssi`](./irssi), [`tmux`](./tmux), [`vim`](./vim), [`zsh`](./zsh) and [`~/bin/`](./bin).
+[`setup.sh`](./setup.sh) will optionally configure [`git`](./git), [`irssi`](./irssi), [`tmux`](./tmux), [`vim`](./vim), [`zsh`](./zsh), [`Droid Sans fonts`](./fonts), and [`~/bin/`](./bin).
 
 #### Additional manual setup
 
@@ -73,5 +73,6 @@ Most of this is lifted from tutorials, tips, and dotfiles from around the net. A
 - Tomorrow Night, the vim color scheme from Chris Kempson's [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/tomorrow-theme/LICENSE.md).
 - Badwolf, the vim color scheme from [Steve Losh](http://stevelosh.com/projects/badwolf). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/badwolf-theme/LICENSE.markdown).
 - Gnome Terminal themes from the [Base-16 theme templating project](http://chriskempson.com/projects/base16/). The terminal scripts are maintained by [Aaron Williamson](https://github.com/aaron-williamson/base16-gnome-terminal) and are available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/terminal/License.txt).
+- Droid Sans and Droid Sans Mono fonts, created by Steve Matteson from the [Ascender Corporation](http://www.droidfonts.com/) for the Android platform, is available under the [Apache License v2.0](https://github.com/toddbernhard/dotfiles/blob/master/fonts/droid-sans/LICENSE.txt).
 
 The rest is [Unlicensed](https://github.com/toddbernhard/dotfiles/blob/master/UNLICENSE.txt).
