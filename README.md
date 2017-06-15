@@ -68,6 +68,7 @@ git clone git@github:toddbernhard/dotfiles.git
 ---
 
 ## License & Credits
+
 Most of this is lifted from tutorials, tips, and dotfiles from around the net. A few 3rd-party artifacts are bundled here for easy installation:
 
 - Tomorrow Night, the vim color scheme from Chris Kempson's [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/tomorrow-theme/LICENSE.md).
@@ -76,3 +77,13 @@ Most of this is lifted from tutorials, tips, and dotfiles from around the net. A
 - Droid Sans and Droid Sans Mono fonts, created by Steve Matteson from the [Ascender Corporation](http://www.droidfonts.com/) for the Android platform, is available under the [Apache License v2.0](https://github.com/toddbernhard/dotfiles/blob/master/fonts/droid-sans/LICENSE.txt).
 
 The rest is [Unlicensed](https://github.com/toddbernhard/dotfiles/blob/master/UNLICENSE.txt).
+
+---
+
+## Current Dev
+
+Testing out using [git-lfs](https://github.com/git-lfs/git-lfs) to add background images to this repo. Not really setup yet, see todo list below.
+
+- Choose backgrounds.
+- Test [SSH support](https://github.com/git-lfs/git-lfs/issues?utf8=%E2%9C%93&q=ssh), understand [SSH support roadmap](https://github.com/git-lfs/git-lfs/blob/master/ROADMAP.md).
+- Standardize git-lft installation. [Option 1](https://help.github.com/articles/installing-git-large-file-storage/), [option 2](https://packagecloud.io/github/git-lfs/install).
