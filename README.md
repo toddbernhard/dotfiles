@@ -85,5 +85,5 @@ The rest is [Unlicensed](https://github.com/toddbernhard/dotfiles/blob/master/UN
 Testing out using [git-lfs](https://github.com/git-lfs/git-lfs) to add background images to this repo. Not really setup yet, see todo list below.
 
 - Choose backgrounds.
-- Test [SSH support](https://github.com/git-lfs/git-lfs/issues?utf8=%E2%9C%93&q=ssh), understand [SSH support roadmap](https://github.com/git-lfs/git-lfs/blob/master/ROADMAP.md).
+- Test [SSH support](https://github.com/git-lfs/git-lfs/issues?utf8=%E2%9C%93&q=ssh)([see also](https://www.google.com/search?client=ubuntu&channel=fs&q=git+lft+ssh&ie=utf-8&oe=utf-8#channel=fs&q=git+lfs+ssh)), understand [SSH support roadmap](https://github.com/git-lfs/git-lfs/blob/master/ROADMAP.md).
 - Standardize git-lft installation. [Option 1](https://help.github.com/articles/installing-git-large-file-storage/), [option 2](https://packagecloud.io/github/git-lfs/install).
