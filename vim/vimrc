@@ -76,6 +76,7 @@ autocmd BufNewFile,BufRead *.scalas set filetype=scala
 autocmd BufNewFile,BufRead *.avsc set filetype=javascript
 autocmd BufNewFile,BufRead *.json set filetype=javascript
 autocmd BufNewFile,BufRead *Jenkinsfile set filetype=groovy
+autocmd BufNewFile,BufRead .babelrc set filetype=javascript
 
 " set t_Co=256
 set background=dark
