@@ -5,7 +5,9 @@
   ca = !git amend
   cm = !git a && git commit -m
   co = checkout
+  cotr = checkout --track
   d = !git a && git diff --cached
+  f = fetch
   pm = !git pull-master
   s = status --short
   stl = stash list

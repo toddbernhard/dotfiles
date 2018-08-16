@@ -5,20 +5,26 @@ call vundle#begin()  " set the runtime path to include Vundle and initialize
 Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle, required
 " All Plugins
 
-" Scala
-Bundle 'derekwyatt/vim-scala'
-" Purescipt
-Bundle 'raichoo/purescript-vim'
-" CoffeeScript
-Plugin 'kchmck/vim-coffee-script'
-" Less
-Bundle 'groenewege/vim-less'
+" Typescript
+Plugin 'leafgarland/typescript-vim'
 " Javascript (better syntax)
 Plugin 'pangloss/vim-javascript'
+" CoffeeScript
+Plugin 'kchmck/vim-coffee-script'
+" Purescipt
+Bundle 'raichoo/purescript-vim'
+" Less
+Bundle 'groenewege/vim-less'
+" Scala
+Bundle 'derekwyatt/vim-scala'
 " Groovy
 Plugin 'rdolgushin/groovy.vim'
 " SQL
 Plugin 'magicalbanana/vim-sql-syntax'
+" C/#
+Plugin 'OrangeT/vim-csharp'
+" FreeMarker Templates
+Plugin 'chaquotay/ftl-vim-syntax'
 
 " Ctrl-P -- search by filename
 Bundle 'kien/ctrlp.vim'
@@ -167,7 +173,7 @@ nnoremap <C-l> :set hlsearch!<CR>
 " set omnifunc=syntaxcomplete
 
 " Automatically strip whitespace on save
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 " Ctrl-P : open in new tab by default
 let g:ctrlp_prompt_mappings = {
