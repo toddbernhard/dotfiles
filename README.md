@@ -7,14 +7,18 @@ Easy setup for CLI tools on a new install.
 Install `git` and `xclip`, then run
 
 ```
-ssh-keygen -q -b 4096 -t rsa -f ~/.ssh/github.id_rsa -N ""
+# Create GitHub SSH key. See bin/ssh-keygen-rsa
+ssh-keygen -t rsa -b 4096 -a 100 -q -N "" -f ~/.ssh/github.id_rsa
 
+# Add github alias to ssh/config
 cat << EOF >> ~/.ssh/config
 Host github
   HostName github.com
   IdentityFile ~/.ssh/github.id_rsa
 EOF
+chmod 600 ~/.ssh/config
 
+# Copy public key to X clipboard
 xclip -selection c ~/.ssh/github.id_rsa.pub
 ```
 

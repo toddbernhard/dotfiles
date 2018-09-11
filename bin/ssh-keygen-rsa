@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+if [ -z "$1" ]; then
+  echo "Filename?"
+  echo -n "~/.ssh/[???].id_rsa : "
+  read filename
+  echo ""
+else
+  filename=$1
+fi
+
+cmd="ssh-keygen -t rsa -b 4096 -a 100 -q -N \"\" -f ~/.ssh/$filename.id_rsa"
+echo "$cmd"
+eval "$cmd"
