@@ -71,6 +71,12 @@ git clone git@github:toddbernhard/dotfiles.git
 
 ---
 
+## Notes for OSX
+
+- OSX includes an older version of Bash, which does not support the associative arrays used by `setup.sh`. Installing latest version of Bash from brew (`brew install bash`) seems to fix.
+
+---
+
 ## License & Credits
 
 Most of this is lifted from tutorials, tips, and dotfiles from around the net. A few 3rd-party artifacts are bundled here for easy installation:

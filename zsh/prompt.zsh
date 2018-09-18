@@ -32,9 +32,11 @@ abbrev_pwd() {
   ABBREV_LENGTH=3
   stub=""
   leftover=$(print -P "%~")   #leftover=$($PWD|sed -e "s!$HOME!~!") # for bash
+  before_tilde=${s%%~*}
+  count_before_tilde=${#before_tilde}
 
   #echo "$stub | $leftover"
-  if [ $(expr index "$leftover" "~") -eq 1 ]; then
+  if [ $count_before_tilde -eq 1 ]; then
     stub="~"
     leftover=$(echo $leftover | sed -re 's!^~(.*)$!\1!')
   fi
