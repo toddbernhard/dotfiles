@@ -22,6 +22,13 @@
 setopt PROMPT_SUBST   # in prompt, do parameter and arithmetic expansion, and command substition
 export ZLE_RPROMPT_INDENT=1  # unfortunately, 0 seems to screw up my left prompt (?!)
 
+
+# Get aliases for GNU-version of commands
+# Can be used to override these commands if given a different name (macos)
+#GEXPR=${GEXPR:-$(which expr)}
+#GSED=${GSED:-$(which sed)}
+
+
 host() {
   echo -n "%F{${ZSH_PROMPT_HOST_COLOR:-"green"}}${PROMPT_HOST:-"%m"}%f"
 }
@@ -29,25 +36,27 @@ host() {
 # Shortens current directory path by truncating all ancestor directories
 # to ABBREV_LENGTH chars. Echos the result
 abbrev_pwd() {
-  ABBREV_LENGTH=3
+  ABBREV_LENGTH=4
   stub=""
   leftover=$(print -P "%~")   #leftover=$($PWD|sed -e "s!$HOME!~!") # for bash
-  before_tilde=${s%%~*}
-  count_before_tilde=${#before_tilde}
+  #before_tilde=${s%%~*}
+  #count_before_tilde=${#before_tilde}
 
-  #echo "$stub | $leftover"
-  if [ $count_before_tilde -eq 1 ]; then
+#  echo "$stub | $leftover"
+#  # what was this for?
+  if [ $(gexpr index "$leftover" "~") -eq 1 ]; then
     stub="~"
-    leftover=$(echo $leftover | sed -re 's!^~(.*)$!\1!')
+    leftover=$(echo $leftover | sed -Ee 's!^~(.*)$!\1!')
   fi
-
-  #echo "$stub | $leftover"
-  while [ $(echo "$leftover" | sed -re 's![^/]!!g' | wc -c) -gt 2 ]; do
-    stub=$stub$(echo $leftover|sed -re "s!([^/]{1,$ABBREV_LENGTH})[^/]*/.*!\1!")
-    leftover=$(echo $leftover|sed -re "s![^/]+/(.*)!\1!")
+#
+#  echo "$stub | $leftover"
+  while [ $(echo "$leftover" | sed -Ee 's![^/]!!g' | wc -c) -gt 2 ]; do
+    stub=$stub$(echo $leftover|sed -Ee "s!([^/]{1,$ABBREV_LENGTH})[^/]*/.*!\1!")
+    leftover=$(echo $leftover|sed -Ee "s![^/]+/(.*)!\1!")
     #echo "$stub | $leftover"
   done
   echo -n "%F{${ZSH_PROMPT_PWD_COLOR:-"blue"}}$stub$leftover%f"
+  #echo -n "%F{blue}$leftover%f"
 }
 
 exit_code() {
@@ -56,7 +65,7 @@ exit_code() {
 }
 
 command_pointer=$(echo -n "%F{cyan}ⅵ%f")
-insert_pointer="⤜"  # ᚛
+insert_pointer="⤜ "  # ᚛
 current_pointer="$insert_pointer"
 
 update_pointer() {

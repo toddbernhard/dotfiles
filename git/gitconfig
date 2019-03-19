@@ -20,6 +20,7 @@
   del-remote = push --delete
   new = !git co -b
   pull-master = !git co master && git pull --ff-only && git co -
+  push-force = push --force-with-lease
   reset-file = checkout HEAD --
 
   # Recent commits by you, useful for time-tracking
@@ -45,3 +46,5 @@
   path = ~/.gitconfig.local
 [github]
   username = toddbernhard
+[user]
+	name = Todd Bernhard

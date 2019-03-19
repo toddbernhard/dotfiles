@@ -34,10 +34,19 @@ alias dokcr='docker'
 alias dockr='docker'
 alias dockre='docker'
 
-alias dpsa='docker ps -a | grep -v alpine'
+alias dpsa='docker ps -a'
 alias dlf='docker logs -f'
 alias docker-rm-all='docker rm -f $(docker ps -aq); docker ps -a'
 alias docker-rm-all-images='docker-rm-all; docker rmi -f  $(docker images -q); docker images'
 function docker-exec {
   docker exec -it $1 bash
+}
+
+
+function vertc-lines {
+ awk -F\, '{for(i=1;i<=NF;i++) printf("%3d  %s\n",i,$i)}'
+}
+
+function vertc {
+ awk -F\, '{for(i=1;i<=NF;i++) printf("%s\n",$i)}'
 }
