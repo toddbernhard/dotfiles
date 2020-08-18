@@ -194,6 +194,5 @@ noremap + :LAck "\W<cword>\W"<CR>
 noremap - :lnext<CR>
 noremap _ :lprevious<CR>
 
-" colorscheme tomorrow-night
- colorscheme badwolf
-" colorscheme monokai
+" colorscheme badwolf
+colorscheme jellybeans

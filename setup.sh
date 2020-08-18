@@ -103,8 +103,8 @@ inner_vim () {
   symlink "$DIR/vim/vimrc" "$HOME/.vimrc"
 
   # Color schemes
-  symlink "$DIR/vim/tomorrow-theme/tomorrow-night.vim" "$vimdir/colors/tomorrow-night.vim"
   symlink "$DIR/vim/badwolf-theme/badwolf.vim" "$vimdir/colors/badwolf.vim"
+  symlink "$DIR/vim/jellybeans-theme/jellybeans.vim" "$vimdir/colors/jellybeans.vim"
 
   # Install Vundle
   program_on_path "git" setup_vundle
