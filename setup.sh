@@ -119,16 +119,6 @@ setup_vundle () {
 }
 
 
-modules[irssi]="symlinks ~/.irssi/config"
-irssi () {
-  program_on_path "irssi" inner_irssi
-}
-inner_irssi () {
-  make_dir "$HOME/.irssi"
-  symlink "$DIR/irssi/config" "$HOME/.irssi/config"
-}
-
-
 modules[zsh]="sources all.zsh - prompt, aliases, keys, more"
 zsh () {
   program_on_path "zsh" inner_zsh
