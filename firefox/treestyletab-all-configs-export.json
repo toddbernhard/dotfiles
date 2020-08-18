@@ -1,0 +1,40 @@
+{
+  "autoAttachOnNewTabCommand": 3,
+  "autoAttachOnOpenedFromExternal": 0,
+  "autoAttachSameSiteOrphan": 3,
+  "autoCollapseExpandSubtreeOnAttach": false,
+  "autoCollapseExpandSubtreeOnSelect": false,
+  "autoGroupNewTabsFromPinned": false,
+  "cachedExternalAddons": [
+    "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}"
+  ],
+  "chunkedUserStyleRules0": "LyogU2hvdyB0aXRsZSBvZiB1bnJlYWQgdGFicyB3aXRoIHJlZCBhbmQgaXRhbGljIGZvbnQgKi8KLyoKLnRhYi51bnJlYWQgdGFiLWxhYmVsIHsKICBjb2xvcjogcmVkICFpbXBvcnRhbnQ7CiAgZm9udC1zdHlsZTogaXRhbGljICFpbXBvcnRhbnQ7Cn0KKi8KCi8qIEFkZCBwcml2YXRlIGJyb3dzaW5nIGluZGljYXRvciBwZXIgdGFiICovCi8qCi50YWIucHJpdmF0ZS1icm93c2luZyB0YWItbGFiZWw6YmVmb3JlIHsKICBjb250ZW50OiAi8J+VtiI7Cn0KKi8KCi8qIEJvcmRlcnMgKi8KdGFiLWl0ZW0gewogIGJvcmRlcjogc29saWQgMXB4ICNBRkI4QzY1MDsKfQovKiBTaXplICovCnRhYi1pdGVtIHsKICAtLXRhYi1zaXplOiAyNXB4ICFpbXBvcnRhbnQ7CiAgaGVpZ2h0OiB2YXIoLS10YWItc2l6ZSk7Cn0KdGFiLWl0ZW0udW5yZWFkIC5sYWJlbC1jb250ZW50IHsKICBmb250LXN0eWxlOiBpdGFsaWM7Cn0KdGFiLWl0ZW0gdGFiLWZhdmljb24gewogIHBhZGRpbmctcmlnaHQ6IDIwcHggIWltcG9ydGFudDsKfQoKLmNvbnRleHR1YWwtaWRlbnRpdHktbWFya2VyIHsKICB0b3A6IGF1dG8gIWltcG9ydGFudDsKICBsZWZ0OiAwLjVlbSAhaW1wb3J0YW50OwogIHJpZ2h0OiAwLjVlbSAhaW1wb3J0YW50OwogIGJvdHRvbTogMCAhaW1wb3J0YW50OwogIHdpZHRoOiBhdXRvICFpbXBvcnRhbnQ7CiAgbWF4LXdpZHRoOiBub25lICFpbXBvcnRhbnQ7CiAgaGVpZ2h0OiBjYWxjKHZhcigtLWZhdmljb24tc2l6ZSkgLyAxMCkgIWltcG9ydGFudDsKfQ==",
+  "closeParentBehaviorMode": 1,
+  "configsVersion": 13,
+  "inheritContextualIdentityToNewChildTab": true,
+  "insertNewChildAt": 0,
+  "labelOverflowStyle": "crop",
+  "lastConfirmedToCloseTabs": 1595259421095,
+  "lastDraggedTabs": {
+    "tabIds": [
+      228
+    ],
+    "urlsDigest": "e931878b26185ccd61e1f0e7d8f1d4d55bb88183"
+  },
+  "longPressOnNewTabButton": "newtab-action-selector",
+  "maxTreeLevel": 1,
+  "notifiedFeaturesVersion": 5,
+  "optionsExpandedSections": [
+    "section-appearance",
+    "section-treeBehavior",
+    "section-addons",
+    "section-advanced",
+    "section-contextMenu",
+    "section-newTab",
+    "section-drag",
+    "section-debug"
+  ],
+  "sidebarScrollbarPosition": 1,
+  "style": "plain",
+  "userStyleRules": ""
+}
