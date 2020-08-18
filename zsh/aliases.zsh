@@ -19,8 +19,6 @@ alias svim="sudo vim"
 
 alias tma="tmux attach -d || tmux new-session -s "
 
-alias mux="mux2.0"  # tmuxinator
-
 alias tree-src="tree -I \"node_modules|lib|target\""
 alias source-zsh="source ~/.zshrc"
 
