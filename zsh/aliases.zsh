@@ -29,10 +29,10 @@ alias apt-full-upgrade="sudo apt update && sudo apt upgrade && sudo apt dist-upg
 
 # DOCKER
 alias dorker='docker'
-alias dokcer='docker'
-alias dokcr='docker'
-alias dockr='docker'
-alias dockre='docker'
+alias dokcer='docker' # typo
+alias dokcr='docker'  # typo
+alias dockr='docker'  # typo
+alias dockre='docker' # typo
 
 alias dpsa='docker ps -a'
 alias dlf='docker logs -f'
@@ -50,3 +50,4 @@ function vertc-lines {
 function vertc {
  awk -F\, '{for(i=1;i<=NF;i++) printf("%s\n",$i)}'
 }
+

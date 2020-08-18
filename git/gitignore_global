@@ -22,6 +22,7 @@ storage.ide
 # Common IDEs? # sometimes should share these
 ###############
 *.code-workspace
+.idea/
 
 # Temp files #
 # ############

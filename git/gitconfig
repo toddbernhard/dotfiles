@@ -40,11 +40,14 @@
   editor = vim
   excludesfile = ~/.gitignore_global
 
+[github]
+  username = toddbernhard
+
+[user]
+  name = Todd Bernhard
+
 # to override settings without putting them in source control, add them to this file
 # useful for overriding [user]
 [include]
   path = ~/.gitconfig.local
-[github]
-  username = toddbernhard
-[user]
-	name = Todd Bernhard
+

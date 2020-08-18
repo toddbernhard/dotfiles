@@ -4,7 +4,7 @@ Easy setup for CLI tools on a new install.
 
 ## Pre-Installation for Clean System (optional)
 
-Install `git` and `xclip`, then run
+Install `git`, then run
 
 ```
 # Create GitHub SSH key. See bin/ssh-keygen-rsa
@@ -18,11 +18,11 @@ Host github
 EOF
 chmod 600 ~/.ssh/config
 
-# Copy public key to X clipboard
-xclip -selection c ~/.ssh/github.id_rsa.pub
+# Show the public key
+cat ~/.ssh/github.id_rsa.pub
 ```
 
-Add your SSH key (copied to X's clipboard) to [your Github account](https://github.com/settings/keys). Then
+Add your SSH key to [your Github account](https://github.com/settings/keys). Then
 
 ```
 git clone git@github:toddbernhard/dotfiles.git
@@ -77,7 +77,7 @@ git clone git@github:toddbernhard/dotfiles.git
 
 ---
 
-## License & Credits
+## Contributors & License
 
 Most of this is lifted from tutorials, tips, and dotfiles from around the net. A few 3rd-party artifacts are bundled here for easy installation:
 
@@ -88,12 +88,3 @@ Most of this is lifted from tutorials, tips, and dotfiles from around the net. A
 
 The rest is [Unlicensed](https://github.com/toddbernhard/dotfiles/blob/master/UNLICENSE.txt).
 
----
-
-## Current Dev
-
-Testing out using [git-lfs](https://github.com/git-lfs/git-lfs) to add background images to this repo. Not really setup yet, see todo list below.
-
-- Choose backgrounds.
-- Test [SSH support](https://github.com/git-lfs/git-lfs/issues?utf8=%E2%9C%93&q=ssh)([see also](https://www.google.com/search?client=ubuntu&channel=fs&q=git+lft+ssh&ie=utf-8&oe=utf-8#channel=fs&q=git+lfs+ssh)), understand [SSH support roadmap](https://github.com/git-lfs/git-lfs/blob/master/ROADMAP.md).
-- Standardize git-lft installation. [Option 1](https://help.github.com/articles/installing-git-large-file-storage/), [option 2](https://packagecloud.io/github/git-lfs/install).
