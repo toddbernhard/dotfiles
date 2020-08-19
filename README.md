@@ -4,6 +4,8 @@ Easy setup for CLI tools on a new install.
 
 ## Pre-Installation for Clean System (optional)
 
+> MacOS: `brew install bash` for array support
+
 Install `git`, then run
 
 ```
@@ -69,11 +71,14 @@ git clone git@github:toddbernhard/dotfiles.git
 ###### ag
 - install ag -- the [silver searcher](https://github.com/ggreer/the_silver_searcher)
 
+###### Python
+Use `pyenv` to manage Python versions and `pipenv` to manage dependencies
+- install pyenv -- `brew install pyenv`
+- install [pipenv](https://pipenv.pypa.io/en/latest/install/)
+
 ---
 
-## Notes for OSX
-
-- OSX includes an older version of Bash, which does not support the associative arrays used by `setup.sh`. Installing latest version of Bash from brew (`brew install bash`) seems to fix.
+Checkout [macos/](/macos) and [firefox/](/firefox)
 
 ---
 

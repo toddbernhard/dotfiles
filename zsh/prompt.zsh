@@ -117,6 +117,7 @@ right_prompt() {
   if [ -z "$ZSH_PROMPT_DISABLE_GIT" ]; then
     local DIRTY_ICON
     local UPSTREAM_ICON
+    local PYENV_ICON
 
     # DIRTY FILE COUNT
     local dirty_count
@@ -155,8 +156,16 @@ right_prompt() {
     fi
 
 
+    # PYENV_ICON
+    if type "pyenv" > /dev/null; then
+      if [ "$(pyenv version-name)" != "system" ]; then
+        PYENV_ICON=" 🐍"
+      fi
+    fi
+
+
     # shellcheck disable=SC2154
-    echo -n "${DIRTY_ICON}${UPSTREAM_ICON}$vcs_info_msg_0_"
+    echo -n "${DIRTY_ICON}${UPSTREAM_ICON}${vcs_info_msg_0_}${PYENV_ICON}"
   else
     echo -n "(no git)"
   fi
@@ -202,7 +211,10 @@ zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:git*' formats '%b'
 zstyle ':vcs_info:git*' actionformats '%b|%a'
 
-zle -N zle-keymap-select vim_mode_toggled
+reset_prompt() {
+  zle reset-prompt
+}
+zle -N zle-keymap-select reset_prompt
 #zle -N zle-line-init vim_mode_toggled
 # shellcheck disable=SC2034
 KEYTIMEOUT=1  # 10ms delay to enter insert mode

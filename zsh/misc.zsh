@@ -29,3 +29,8 @@ bindkey -v
 
 # Autocompletion plugins
 autoload -Uz compinit && compinit
+
+# Initialize pyenv
+if type "pyenv" > /dev/null; then
+  eval "$(pyenv init -)"
+fi
