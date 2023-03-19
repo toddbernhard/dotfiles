@@ -5,7 +5,6 @@
   ca = !git amend
   cm = !git a && git commit -m
   co = checkout
-  cotr = checkout --track
   d = !git a && git diff --cached
   f = fetch
   pm = !git pull-master
@@ -19,13 +18,13 @@
   del-local = branch -D
   del-remote = push --delete
   new = !git co -b
+  pull-main = !git co main && git pull --ff-only && git co -
   pull-master = !git co master && git pull --ff-only && git co -
   push-force = push --force-with-lease
   reset-file = checkout HEAD --
 
   # Recent commits by you, useful for time-tracking
-  recent = !git log --pretty=format:'%Cgreen%ad %C(red)%h%Creset - %s' --date=short --reverse --all --since=2.months.ago --author="$(git config user.name)"
-
+  recent = !git log --pretty=format:'%Cgreen%ad %C(red)%h%Creset - %s' --date=short --reverse --all --since=2.months.ago --author='"$(git config user.name)"'
 
   tree = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 

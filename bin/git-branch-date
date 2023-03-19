@@ -8,12 +8,12 @@ seconds_per_day=86400
 
 formatScript='
   refname=%(refname)
-  commit_date=%(committerdate:short)
+  commit_date=%(committerdate:unix)
   short_name=`printf "%-30s" %(refname:short)`
   diff_text=%(committerdate:relative)
 
   most_recent=${most_recent:-$commit_date}  # set on first iteration
-  let delt=(`date +%s -d "$most_recent"`-`date +%s -d "$commit_date"`)/$seconds_per_day
+  let delt=("$most_recent" - "$commit_date")/$seconds_per_day
 
   if echo "$refname" | grep -q "refs/remotes"; then
     clr_name="$green"
@@ -33,7 +33,7 @@ formatScript='
     clr_diff="$normal"
   fi
 
-  echo -e "$commit_date\t$clr_name$short_name\t$clr_diff$diff_text$normal"
+  echo -e "%(committerdate:short)\t$clr_name$short_name\t$clr_diff$diff_text$normal"
 '
 
 eval=`git for-each-ref --shell --sort='-committerdate' --format="$formatScript" refs/heads refs/remotes`
