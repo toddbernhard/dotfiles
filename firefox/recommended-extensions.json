@@ -1,0 +1,19 @@
+{
+  "treestyletab@piro.sakura.ne.jp": {
+    "name": "Tree Style Tab",
+    "url": "https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/",
+    "default": true
+  },
+  "@testpilot-containers": {
+    "name": "Firefox Multi-Account Containers",
+    "url": "https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/"
+  },
+  "arc-dark-theme@afnankhan": {
+    "name": "Arc Dark Theme",
+    "url": "https://addons.mozilla.org/en-US/firefox/addon/arc-dark-theme-we/"
+  },
+  "{6a65273e-2b26-40f5-b66e-8eed317307da}": {
+    "name": "New Tab Suspender",
+    "url": "https://addons.mozilla.org/en-US/firefox/addon/new-tab-suspender/"
+  }
+}
