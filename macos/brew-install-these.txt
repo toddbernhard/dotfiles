@@ -1,5 +1,7 @@
+# useful util
 brew install bash
 brew install tree
+brew install the_silver_searcher
 
 # pyenv dependencies, needed to build Python versions
 brew install openssl

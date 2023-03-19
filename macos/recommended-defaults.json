@@ -1,0 +1,28 @@
+{
+    "com.apple.finder AppleShowAllFiles": {
+        "enabled": true,
+        "commands": [
+            "defaults write com.apple.finder AppleShowAllFiles YES",
+            "killall Finder"
+        ],
+        "comment": "Show hidden files"
+    },
+    "com.apple.touchbar.agent PresentationModeGlobal": {
+        "enabled": false,
+        "commands": [
+            "defaults write com.apple.touchbar.agent PresentationModeGlobal fullControlStrip",
+            "pkill 'Touch Bar agent'",
+            "killall 'ControlStrip'"
+        ],
+        "comment": "Show expanded TouchBar"
+    },
+    "com.apple.controlstrip FullCustomized": {
+        "enabled": true,
+        "commands": [
+          "defaults write com.apple.controlstrip FullCustomized \"('com.apple.system.screen-lock',NSTouchBarItemIdentifierFlexibleSpace,'com.apple.system.group.brightness',NSTouchBarItemIdentifierFlexibleSpace,NSTouchBarItemIdentifierFlexibleSpace,'com.apple.system.group.media',NSTouchBarItemIdentifierFlexibleSpace,'com.apple.system.group.volume')\"",
+          "pkill 'Touch Bar agent'",
+          "killall 'ControlStrip'"
+        ],
+        "comment": "Configure expanded TouchBar"
+    }
+}
