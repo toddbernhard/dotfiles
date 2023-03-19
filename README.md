@@ -1,27 +1,25 @@
-Easy setup for CLI tools on a new install.
+Scripted setup of some tools.
 
 ---
 
-## Pre-Installation for Clean System (optional)
-
-> MacOS: `brew install bash` for array support
+### Clean system? Start here
 
 Install `git`, then run
 
 ```
 # Create GitHub SSH key. See bin/ssh-keygen-rsa
-ssh-keygen -t rsa -b 4096 -a 100 -q -N "" -f ~/.ssh/github.id_rsa
+ssh-keygen -t ed25519 -q -N "" -f ~/.ssh/github.id_ed25519
 
 # Add github alias to ssh/config
 cat << EOF >> ~/.ssh/config
 Host github
   HostName github.com
-  IdentityFile ~/.ssh/github.id_rsa
+  IdentityFile ~/.ssh/github.id_ed25519
 EOF
 chmod 600 ~/.ssh/config
 
 # Show the public key
-cat ~/.ssh/github.id_rsa.pub
+cat ~/.ssh/github.id_ed25519.pub
 ```
 
 Add your SSH key to [your Github account](https://github.com/settings/keys). Then
@@ -34,29 +32,32 @@ git clone git@github:toddbernhard/dotfiles.git
 
 ## Installation
 
-[`setup.sh`](./setup.sh) will optionally configure [`git`](./git), [`irssi`](./irssi), [`tmux`](./tmux), [`vim`](./vim), [`zsh`](./zsh), [`Droid Sans fonts`](./fonts), and [`~/bin/`](./bin).
+[`setup.py`](./setup.py) does the magic.
+```
+    bin         symlinks scripts into ~/bin
+    firefox     installs extensions, user.js settings, and userChrome styles
+    fonts       installs Droid Sans [+Bold,+Mono] on OSX only
+    git         symlinks ~/.gitconfig, ~/.gitignore_global, sets up local user info
+    macos       prompts to install common apps, brew apps, and OS defaults
+    tmux        symlinks ~/.tmux.conf
+    vim         makes .vim directories, symlinks ~/.vimrc, installs Vundle
+    zsh         sources all.zsh - prompt, aliases, keys, more
+```
 
 #### Additional manual setup
 
 ###### keymap
 - set to dvorak
 - bind capslock to escape
-  - xkeyboard-config option is `caps:escape`
-  - http://askubuntu.com/questions/363346/how-to-permanently-switch-caps-lock-and-esc
-  - https://bbs.archlinux.org/viewtopic.php?id=100007
 
-###### zsh
-- change login shell in `/etc/passwd`
-- change terminal emulator shell to `/bin/zsh`
-
-###### terminal
-- I recommend the Base-16 Twilight theme. Run `./terminal/base16-twilight.sh` to add it to Gnome terminal.
-
-###### fonts
-- Droid Sans, Droid Sans Mono, Droid Sans Bold are all included in [fonts/droid-sans](https://github.com/toddbernhard/dotfiles/blob/master/fonts/droid-sans).
+###### Colors
+- I like the [Tinted Theming project](https://github.com/tinted-theming/home) based on [Base16](https://github.com/chriskempson/base16).
+- Get your iTerm2 themes here: [https://github.com/tinted-theming/base16-iterm2](https://github.com/tinted-theming/base16-iterm2)
+    - `base16-tokyo-city-terminal-dark` is a good start
+    - `base16-summerfruit-dark` is juicy
 
 ###### ssh client
-- setup client RSA keys (often github, home, office)
+- setup client keys (often github, home, office)
 - add common destinations to `~/.ssh/config` (see [Arch wiki](https://wiki.archlinux.org/index.php/Secure_Shell#Saving_connection_data_in_ssh_config))
 - upload key to github
 
@@ -67,29 +68,4 @@ git clone git@github:toddbernhard/dotfiles.git
 - `sshd_config` edits:
   - `AllowGroups ssh`
   - `PasswordAuthentication no`
-
-###### ag
-- install ag -- the [silver searcher](https://github.com/ggreer/the_silver_searcher)
-
-###### Python
-Use `pyenv` to manage Python versions and `pipenv` to manage dependencies
-- install pyenv -- `brew install pyenv`
-- install [pipenv](https://pipenv.pypa.io/en/latest/install/)
-
----
-
-Checkout [macos/](/macos) and [firefox/](/firefox)
-
----
-
-## Contributors & License
-
-Most of this is lifted from tutorials, tips, and dotfiles from around the net. A few 3rd-party artifacts are bundled here for easy installation:
-
-- Tomorrow Night, the vim color scheme from Chris Kempson's [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/tomorrow-theme/LICENSE.md).
-- Badwolf, the vim color scheme from [Steve Losh](http://stevelosh.com/projects/badwolf). It is available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/vim/badwolf-theme/LICENSE.markdown).
-- Gnome Terminal themes from the [Base-16 theme templating project](http://chriskempson.com/projects/base16/). The terminal scripts are maintained by [Aaron Williamson](https://github.com/aaron-williamson/base16-gnome-terminal) and are available under the [MIT License](https://github.com/toddbernhard/dotfiles/blob/master/terminal/License.txt).
-- Droid Sans and Droid Sans Mono fonts, created by Steve Matteson from the [Ascender Corporation](http://www.droidfonts.com/) for the Android platform, is available under the [Apache License v2.0](https://github.com/toddbernhard/dotfiles/blob/master/fonts/droid-sans/LICENSE.txt).
-
-The rest is [Unlicensed](https://github.com/toddbernhard/dotfiles/blob/master/UNLICENSE.txt).
 
