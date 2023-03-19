@@ -5,20 +5,10 @@ call vundle#begin()  " set the runtime path to include Vundle and initialize
 Plugin 'gmarik/Vundle.vim' " let Vundle manage Vundle, required
 " All Plugins
 
-" Typescript
-Plugin 'leafgarland/typescript-vim'
 " Javascript (better syntax)
 Plugin 'pangloss/vim-javascript'
-" CoffeeScript
-Plugin 'kchmck/vim-coffee-script'
-" Purescipt
-Bundle 'raichoo/purescript-vim'
-" Less
-Bundle 'groenewege/vim-less'
 " Scala
 Bundle 'derekwyatt/vim-scala'
-" Groovy
-Plugin 'rdolgushin/groovy.vim'
 " SQL
 Plugin 'magicalbanana/vim-sql-syntax'
 " C/#
@@ -34,8 +24,6 @@ Bundle 'mileszs/ack.vim'
 Bundle 'myusuf3/numbers.vim'
 " automatically close open html/xml tags with ctrl+_
 Plugin 'vim-scripts/closetag.vim'
-" NERDtree -- folder browser within Vim
-Plugin 'scrooloose/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -81,7 +69,6 @@ autocmd Filetype html setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.scalas set filetype=scala
 autocmd BufNewFile,BufRead *.avsc set filetype=javascript
 autocmd BufNewFile,BufRead *.json set filetype=javascript
-autocmd BufNewFile,BufRead *Jenkinsfile set filetype=groovy
 autocmd BufNewFile,BufRead .babelrc set filetype=javascript
 
 " set t_Co=256
